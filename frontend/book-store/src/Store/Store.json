@@ -1,0 +1,157 @@
+[
+    {
+      "author": "Chinua Achebe",
+      "country": "Nigeria",
+      "img": "https://images.pexels.com/photos/1447273/pexels-photo-1447273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "language": "English",
+      "name":"Story Book",
+      "price":0,
+      "category":"Free",
+      "pages": 209,
+      "title": "Things Fall Apart",
+      "year": 1958,
+      "quantity":1
+    },
+    {
+      "author": "Hans Christian Andersen",
+      "country": "Denmark",
+      "img": "https://img.freepik.com/free-photo/old-books-arrangement-with-light_23-2148898296.jpg?w=996",
+      "language": "Danish",
+      "name":"Novel",
+      "price":0,
+      "quantity":1,
+      "category":"Free",
+      "pages": 784,
+      "title": "Fairy tales",
+      "year": 1836
+    },
+    {
+      "author": "Dante Alighieri",
+      "country": "Italy",
+      "img": "https://img.freepik.com/free-photo/books-arrangement-cup_23-2148898273.jpg?w=996",
+      "language": "Italian",
+      "name":"Novel",
+      "price":0,
+      "category":"Free",
+  
+      "pages": 928,
+      "title": "The Divine Comedy",
+      "year": 1315,
+      "quantity":1
+    },
+    {
+        "quantity":1,
+      "author": "Unknown",
+      "country": "Sumer and Akkadian Empire",
+      "img": "https://images.pexels.com/photos/1447273/pexels-photo-1447273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "language": "Akkadian",
+      "name":"Physic",
+      "price":0,
+      "category":"Free",
+     
+      "pages": 160,
+      "title": "The Epic Of Gilgamesh",
+      "year": -1700
+    },
+  
+  
+   
+    {
+        "quantity":1,
+        "author": "Unknown",
+        "country": "India/Iran/Iraq/Egypt/Tajikistan",
+        "img": "https://img.freepik.com/free-photo/top-view-pile-books_23-2148213825.jpg?w=996",
+        "language": "Arabic",
+   
+        "pages": 288,
+        "title": "One Thousand and One Nights",
+        "year": 1200,
+        "name":"novel",
+        "price":2220,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Unknown",
+        "country": "Iceland",
+        "img": "https://images.pexels.com/photos/1447273/pexels-photo-1447273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "language": "Old Norse",
+        
+        "pages": 384,
+        "title": "Saga",
+        "year": 150,
+        "name":"Story book",
+        "price":120,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Jane Austen",
+        "country": "United Kingdom",
+        "img": "https://img.freepik.com/free-photo/top-view-pile-books_23-2148213825.jpg?w=996",
+        "language": "English",
+      
+        "pages": 226,
+        "title": "Pride and Prejudice",
+        "year": 1813,
+        "name":"Novel",
+        "price":20,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Honor de Balzac",
+        "country": "France",
+        "img": "https://img.freepik.com/free-photo/top-view-pile-books_23-2148213825.jpg?w=996",
+        "language": "French",
+      
+        "pages": 443,
+        "title": "jatin",
+        "year": 1835,
+        "name":"sports",
+        "price":220,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Samuel Beckett",
+        "country": "Republic of Ireland",
+        "img": "https://img.freepik.com/free-photo/books-arrangement-cup_23-2148898273.jpg?w=996",
+        "language": "French, English",
+      
+        "pages": 256,
+        "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
+        "year": 1952,
+        "name":"sports",
+        "price":220,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Giovanni Boccaccio",
+        "country": "Italy",
+        "img": "https://img.freepik.com/free-photo/old-books-arrangement-with-light_23-2148898296.jpg?w=996",
+        "language": "Italian",
+      
+        "pages": 1024,
+        "title": "The Decameron",
+        "year": 1351,
+        "name":"sports",
+        "price":2220,
+        "category":"Paid"
+      },
+      {
+        "quantity":1,
+        "author": "Jorge Luis Borges",
+        "country": "Argentina",
+        "img": "https://images.pexels.com/photos/1447273/pexels-photo-1447273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "language": "Spanish",
+     
+        "pages": 224,
+        "title": "Ficciones",
+        "year": 1965,
+        "name":"sports",
+        "price":2320,
+        "category":"Paid"
+      }
+]
