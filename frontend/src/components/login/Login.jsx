@@ -80,7 +80,7 @@ const Login = () => {
 
   return (
     <div className="-mt-4 md:-mt-4 ">
-      <div className="bg-gray-100  border-red-600  flex mx-auto md:min-h-[70vh] border-2 relative top-10 mt-[5rem] mb-32  rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+      <div className="bg-gray-100   flex mx-auto md:min-h-[70vh]  relative top-10 mt-[5rem] mb-32  rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         <div className="md:w-1/2 px-8 md:px-16">
           <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
           <p className="text-xs mt-4 text-[#002D74]">

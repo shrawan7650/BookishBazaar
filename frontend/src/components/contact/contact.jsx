@@ -117,7 +117,7 @@ const Contact = () => {
 
           {/* <div className="border mt-5 border-black"></div> */}
 
-          <div className="flex gap-5 mt-8 md:gap-10 md:mt-4 md:ml-[32rem] text-black cursor-pointer">
+          <div className="flex gap-5 ml-3 mt-8 md:gap-10 md:mt-4 md:ml-[32rem] text-black cursor-pointer">
             <a>
               <FaYoutube className="text-2xl" />
             </a>
