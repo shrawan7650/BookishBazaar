@@ -19,6 +19,6 @@
   },
   "scripts": {
     "start": "script,js",
-    "dev": "nodemon script.js"
+    "dev": "node script.js"
   }
 }
