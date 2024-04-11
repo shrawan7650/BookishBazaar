@@ -19,7 +19,7 @@ const HomePage = () => {
       <Banner />
       <Feature />
 
-      <div className=" min-h-[25rem] flex flex-wrap">
+      <div className=" min-h-[25rem] flex overflow-x-auto">
         {freeBook.map((item) => {
           return <Cards item={item} key={item} />;
         })}

@@ -20,6 +20,7 @@ import PaymentPage from "./components/payment/PaymentPage";
 import MoreDetials from "./components/banner/MoreDetials";
 import PageNotFound from "./page/pagenotfound/PageNotFound";
 import Footer from "./components/footer/Footer";
+import DashBoard from "./components/dashboard/DashBoard";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -27,13 +28,10 @@ function App() {
   return (
     <>
       <div className="dark:bg-slate-900 dark:text-white">
-        <Routes>
-          <Route path="/payment" element={<PaymentPage />} />
-        </Routes>
-
         <NavBar />
 
         <Routes>
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<AboutPage />} />
@@ -43,7 +41,13 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/reset" element={<ResetPasswordPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/course" element={isAuthenticated?.user?(<CoursePage />):(<Navigate to='/  ' />)} />
+          <Route path="/dashboard" element={<DashBoard />} />
+          <Route
+            path="/course"
+            element={
+              isAuthenticated?.user ? <CoursePage /> : <Navigate to="/login" />
+            }
+          />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/more_detials" element={<MoreDetials />} />
         </Routes>

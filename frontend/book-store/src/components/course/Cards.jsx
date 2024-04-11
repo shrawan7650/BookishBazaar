@@ -13,8 +13,8 @@ const Cards = ({ item }) => {
 
   const [cart, setCart] = useCart();
   return (
-    <div className=" md:mt-5 md:max-w-[20rem] w-full  mx-auto md:ml-6  min-h-[10rem] mb-5 rounded-xl">
-      <div className="  w-full duration-300 rounded-lg   ">
+    <div className=" md:mt-5 md:min-w-[20rem] min-w-full m-1 aspect-square hover:-translate-y-8 duration-700  md:ml-6  min-h-[12rem] mb-5 rounded-xl">
+      <div className="  w-full   ">
         <figure>
           <img src={item.img} alt="Shoes" className=" h-[14rem] w-full " />
         </figure>
@@ -25,11 +25,11 @@ const Cards = ({ item }) => {
 
           <div className="card-actions flex justify-between">
             <div className="text-center">Price:{item.price}</div>
-            <button className=" hover:underline" onClick={()=>navigate(`/more_detials?id=${item._id}`)}>More Detials</button>
+            <button className=" hover:underline hover:scale-105 " onClick={()=>navigate(`/more_detials?id=${item._id}`)}>More Detials</button>
 
-            {
-               <div
-              className=" border px-2 -mt-1 rounded-md hover:bg-slate-800 py-1  cursor-pointer hover:bg-red hover:text-white"
+            
+              {isAuthenticated.user?(<div
+              className={`border px-2 mt-1 rounded-md hover:bg-slate-800 py-1  cursor-pointer hover:bg-red hover:text-white`}
 
               onClick={() => {
                 setCart([...cart, item]);
@@ -38,8 +38,8 @@ const Cards = ({ item }) => {
               }}
             >
               Buy now
-            </div>
-            }
+            </div>):null} 
+            
           </div>
         </div>
       </div>

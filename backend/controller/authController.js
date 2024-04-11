@@ -1,14 +1,16 @@
-const User = require("../model/userSchema");
+const User = require("../model/userSchema.js");
 const bcryptjs = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Otp = require("../model/otpSchema.js");
 const Books = require("../model/booksSchema.js");
 const { hashPassword, comparePassword } = require("../helpers/authHelper.js");
+const fs = require("fs");
 require("dotenv").config();
 exports.signupcontroller = async (req, res) => {
   try {
-    const { email, password, confirmpassword, name } = req.body;
-    if (!email || !password || !confirmpassword) {
+    const { email, password, confirmpassword, name, role, phone } = req.body;
+
+    if (!email || !password || !confirmpassword || !role || !phone) {
       return res.status(400).json({ msg: "Please enter all the fields" });
     }
     if (password.length < 6) {
@@ -25,12 +27,15 @@ exports.signupcontroller = async (req, res) => {
         .status(400)
         .json({ msg: "User with the same email already exists" });
     }
+
     const hashedPassword = await hashPassword({ password });
     // const hashedPassword = await bcryptjs.hash(password, 10);
 
     const newUser = new User({
       email,
       name,
+      phone,
+      role,
       password: hashedPassword,
       confirmpassword: hashedPassword,
     });
@@ -49,8 +54,8 @@ exports.signupcontroller = async (req, res) => {
 
 exports.logincontroller = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { email, password, role } = req.body;
+    if (!email || !password || !role) {
       return res.status(400).json({ msg: "Please enter all the fields" });
     }
 
@@ -66,11 +71,27 @@ exports.logincontroller = async (req, res) => {
         msg: "Invalid Password",
       });
     }
+    if (role !== user.role) {
+      return res.send({ msg: "Role not found" });
+    }
     user.password = undefined;
     user.confirmpassword = undefined;
-    const token = jwt.sign({ id: user._id, email: user.email, name: user.name }, process.env.SECRET_KEY);
-  
-    res.status(201).send({ msg: "login sucessfully", token, user });
+    const token = jwt.sign(
+      { id: user._id, email: user.email, name: user.name, role: user.role },
+      process.env.SECRET_KEY,
+      { expiresIn: "1h" }
+    );
+    //send cokkies  to client side for save it in browser
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        // secure: true,
+        expiresIn: "1h",
+      })
+      .send({ msg: " login in successfully", token, user });
+    // });
+    // res.
+    // res.status(201).send();
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -170,22 +191,59 @@ exports.changePassword = async (req, res) => {
 
 // profile controller
 exports.profilecontroller = async (req, res) => {
-  const { id } = req.params;
+  const id = req.userId;
 
   try {
-    const user = await User.findById({ _id: id });
-    if (!user) {
-      return res.status(404).json({ msg: "User not found" });
+    const { email, password, confirmpassword, name, phone } = req.body;
+    // const { image } = req.files;
+
+    if (!email || !password || !confirmpassword || !phone || !name) {
+      return res.status(400).json({ msg: "Please enter all the fields" });
     }
-    user.password = undefined;
-    user.confirmpassword = undefined;
-    return res.status(200).json({ user });
+    // if(image&&image.length>100000){
+    //   return res.status(400).json({ msg: "photo required less than 1mb" });
+    // }
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ msg: "Password should be at least 6 characters" });
+    }
+    if (confirmpassword !== password) {
+      return res.status(400).json({ msg: "Both the passwords don't match" });
+    }
+    const hashedPassword = await hashPassword(password);
+    const user = await User.findById(id);
+    const userUpdates = await User.findByIdAndUpdate(
+      id,
+      {
+        email: email || user.email,
+        name: name || user.name,
+        phone: phone || user.phone,
+
+        password: hashedPassword || user.password,
+        confirmpassword: hashedPassword,
+      },
+      { new: true }
+    );
+    // if (image) {
+    //   userUpdates.image.data = fs.readFileSync(image.path);
+    //   userUpdates.image.contentType = image.type;
+    // }
+
+    await userUpdates.save();
+    userUpdates.password = undefined;
+    userUpdates.confirmpassword = undefined;
+    return res.status(200).json({
+      userUpdates,
+      success: true,
+      message: "Profile Updates Successfully",
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-// gaet all bookes
+// get all bookes
 exports.getAllBooksController = async (req, res) => {
   try {
     // console.log("get req",req.userId)
@@ -203,5 +261,44 @@ exports.getAllBooksDeitialsController = async (req, res) => {
     return res.status(200).json({ msg: "find get sucssfully", books });
   } catch (err) {
     console.log(err);
+  }
+};
+
+//logout
+exports.logout = async (req, res) => {
+  try {
+    res
+      .status(201)
+      .cookie("token", "", {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+      })
+      .json({
+        success: true,
+        msg: "Logged Out Successfully.",
+      });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+//get user
+exports.getUser = async (req, res) => {
+  try {
+    const id = req.userId;
+    console.log(id)
+    if (!id) return res.status(400).json({ msg: "No User ID provided" });
+
+    let user = await User.findById({ _id: id });
+
+    if (!user){ return res.status(400).json({ msg: "User not found." });}
+    user.password = undefined;
+    user.confirmpassword = undefined;
+    return res.status(200).json({
+      user,
+      success: true,
+      message: "Get  Successfully",})
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: e.toString() });
   }
 };

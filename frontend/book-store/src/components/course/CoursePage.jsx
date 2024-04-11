@@ -11,7 +11,7 @@ const CoursePage = () => {
   const{books} = useAuth()
  const PaidBooks = books.filter((books) => books.category === "Paid");
   return (
-    <>
+    <div className=" min-h-screen border">
       <div className="w-full flex z-0 justify-center items-center flex-col bg-[#FCEBE6] mt-10 min-h-[32rem]">
         <h1 className="md:text-6xl text-4xl text-black  font-medium uppercase">
           books
@@ -29,7 +29,7 @@ const CoursePage = () => {
         </div>
       </div>
 
-<div className=" min-h-[25rem] flex flex-wrap">
+<div className=" min-h-[25rem] flex overflow-x-auto">
   {
     PaidBooks.map((item)=>{
       return (
@@ -120,7 +120,7 @@ const CoursePage = () => {
         </div>
       </div>
       <Banner6 />
-    </>
+    </div>
   );
 };
 

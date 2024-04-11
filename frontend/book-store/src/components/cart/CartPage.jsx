@@ -2,7 +2,7 @@
 import { useCart } from "../../helper/context/cart";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useAuth } from "../../helper/context/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { IoAddOutline } from "react-icons/io5";
 import { RiSubtractLine } from "react-icons/ri";
@@ -56,14 +56,14 @@ console.log(cart)
     <>
       <div className=" md:mt-[86px]">
         {!isAuthenticated.user ? (
-          <div className=" mt-4 md:min-h-[70rem] border   text-center text-3xl flex justify-center gap-10 text-black">
+          <div className=" mt-4 md:min-h-[40rem] min-h-[40rem]  bg-black text-white    text-center text-2xl flex justify-center items-center gap-10 ">
             {" "}
            
-            <h1 className="text-center mt-5 ">Please Login to Checkout</h1>
+            <h1 className="text-center mt-5  hover:scale-105 duration-700 cursor-text  border border-gray-700 p-2 rounded-md tracking-wider font-light">Please Login to Checkout <span><Link to="/login" className=" hover:underline tracking-wide ">Click Here!</Link></span></h1>
           </div>
         ) : (
-          <div className="flex   shadow-md  md:mt-[1rem] flex-col md:flex-row w-full  my-10">
-          <div className="md:w-3/4 bg-white px-10 py-10 ">
+          <div className="flex items-start  shadow-md  md:mt-[1rem] flex-col md:flex-row w-full  my-10">
+          <div className="md:w-3/4 bg-white px-10 py-10   ">
             <div className="flex justify-between  pb-8">
               <h1 className="font-semibold text-2xl">Shopping Cart</h1>
               <h2 className="font-semibold space-y-2 text-2xl">{`Items(${cart.length})`}</h2>
@@ -142,7 +142,7 @@ console.log(cart)
             </a>
           </div>
   
-          <div className=" md:w-1/4  bg-white">
+          <div className=" md:w-1/4  sticky top-0 h-dvh">
             <div id="summary" className=" w-full px-8 py-10">
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary

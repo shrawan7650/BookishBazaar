@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import toast from "react-hot-toast";
 const ResetPasswordPage = () => {
   const navigate = useNavigate();
@@ -80,6 +81,7 @@ const ResetPasswordPage = () => {
                     Resend
                   </a>
                 </div>
+                <Link to="/forget"><FaArrowLeft/></Link>
               </div>
             </div>
           </div>

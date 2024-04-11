@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  phone: {
+    required: true,
+    type: Number,
+  },
+
   password: {
     required: true,
     type: String,
@@ -20,6 +25,17 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
     trim: true,
+  },
+  role: {
+    // required: true,
+    type: String,
+    enum: ["user", "admin"],
+  },
+  image: {
+    data: Buffer,
+    contentType: String,
+    
+    
   },
 });
 
