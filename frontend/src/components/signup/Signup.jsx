@@ -151,7 +151,7 @@ const Signup = () => {
               </div>
 
               <div className=" relative outline-none">
-                <input
+                <input  
                   className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
                   type={isPasswordVisible ? "text" : "password"}
                   name="confirmpassword"
