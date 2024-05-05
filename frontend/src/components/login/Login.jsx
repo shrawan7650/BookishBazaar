@@ -44,13 +44,7 @@ const Login = () => {
     try {
       const response = await axios.post(
         "https://bookishbazaar-zf22.onrender.com/api/v1/login",
-        user,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
+        user
       );
       console.log(response.data.user);
 
