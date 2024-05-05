@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bcrypt": "^5.1.1",
+   
     "bcryptjs": "^2.4.3",
     "braintree": "^3.23.0",
     "cloudinary": "^2.2.0",
@@ -19,7 +19,7 @@
     "stripe": "^14.24.0"
   },
   "scripts": {
-    "start": "script,js",
+    "start": "node script.js",
     "dev": "nodemon script.js"
   }
 }

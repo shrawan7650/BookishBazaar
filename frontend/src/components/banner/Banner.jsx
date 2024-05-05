@@ -27,7 +27,7 @@ const Banner = () => {
           </div>
           <div className="flex justify-evenly mt-5">
             <button className=" md:px-6 md:py-2.5 px-[3px] outline-none rounded-md bg-[#946659] hover:bg-[#E95930] text-white hvr-wobble-to-bottom-right">
-              ₹6.75-Purchase
+              ₹600-Purchase
             </button>
 
             <button className="md:px-6 hvr-sweep-to-right  flex justify-center text-1xl py-2 px-3  md:text-2xl items-center md:py-2.5 outline-none rounded-md border  border-gray-800  text-black">

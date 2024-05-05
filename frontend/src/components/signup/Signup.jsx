@@ -104,7 +104,7 @@ const Signup = () => {
               </option>
             </select> */}
             <input
-              className="p-2   rounded-xl outline-none"
+              className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
               type="text"
               name="name"
               onChange={inputChangeHandler}
@@ -112,7 +112,7 @@ const Signup = () => {
               placeholder="Enter Name"
             />
             <input
-              className="p-2   rounded-xl outline-none"
+              className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
               type="email"
               name="email"
               onChange={inputChangeHandler}
@@ -120,7 +120,7 @@ const Signup = () => {
               placeholder="Email"
             />
             <input
-              className="p-2   rounded-xl outline-none"
+              className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
               type="text"
               name="phone"
               onChange={inputChangeHandler}
@@ -129,7 +129,7 @@ const Signup = () => {
             />
             <div className=" outline-none relative">
               <input
-                className="p-2 rounded-xl outline-none w-full"
+                className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
                 type={isPasswordVisible ? "text" : "password"}
                 name="password"
                 placeholder="Password"
@@ -151,7 +151,7 @@ const Signup = () => {
 
             <div className=" relative outline-none">
               <input
-                className="p-2 rounded-xl  outline-none w-full"
+                className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
                 type={isPasswordVisible ? "text" : "password"}
                 name="confirmpassword"
                 placeholder="Confirm Password"
