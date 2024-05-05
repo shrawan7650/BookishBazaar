@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { MdOutlineLockReset } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import toast from "react-hot-toast";
 const ForgetPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -17,7 +18,12 @@ const ForgetPage = () => {
       { email }
     );
     const responseEmail = response.data.data.email;
-    alert("OTP CODE:-" + response.data.data.code);
+    toast.success(response.data.msg);
+    // if (!responseEmail || !checkbox ) return toast.error("Please check your input!");
+    
+   
+
+    // alert("OTP CODE:-" + response.data.data.code);
     navigate(`/reset?email=${responseEmail}`);
   };
   return (
@@ -26,7 +32,7 @@ const ForgetPage = () => {
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
     <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
     <MdOutlineLockReset />
-      Flowbite    
+         
     </a>
     <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
       <h1 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

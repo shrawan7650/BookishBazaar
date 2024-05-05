@@ -5,13 +5,33 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../helper/context/auth";
 import toast from "react-hot-toast";
 import { useCart } from "../../helper/context/cart";
-import { CiSearch } from "react-icons/ci";
+import { CiBellOn, CiBookmark, CiHome, CiSearch } from "react-icons/ci";
 import { IoSettingsSharp } from "react-icons/io5";
-import { RiArrowDropDownFill  } from "react-icons/ri";
+import { RiArrowDropDownFill } from "react-icons/ri";
+import axios from "axios";
+import { SiStorybook } from "react-icons/si";
+import { MdCloudUpload } from "react-icons/md";
+import { GrDocumentUpdate } from "react-icons/gr";
+import { FaUser } from "react-icons/fa";
+import { IoBag } from "react-icons/io5";
+import { IoIosLogOut } from "react-icons/io";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdHome } from "react-icons/io";
+import { IoIosHelpBuoy } from "react-icons/io";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { GiUpgrade } from "react-icons/gi";
+import SearchBar from "./SearchBar";
+import logo from "../../assets/my-pic.jpg";
+import { FcAbout } from "react-icons/fc";
 const NavBar = () => {
-  const[show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const [cart] = useCart();
   const [sticky, setSticky] = useState(false);
+  const { isLogged, setIsLogged } = useAuth();
+  const { usersData } = useAuth();
+  const [searchToggele, setSearchToggel] = useState(false);
+  //  console.log(usersData.role);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -22,64 +42,232 @@ const NavBar = () => {
     };
     window.addEventListener("scroll", handleScroll);
   }, []);
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
   // console.log("this is auth", isAuthenticated.user);
   const [togle, setTogle] = useState(true);
 
-  const logoutHandler = () => {
-    setIsAuthenticated({
-      ...isAuthenticated,
-      token: null,
-      user: null,
+  const logoutHandler = async () => {
+    const response = await axios.get("http://localhost:3000/api/v1/logout", {
+      withCredentials: true,
     });
-    toast.success("logout succssfully");
-    localStorage.removeItem("token");
+    toast.success(response.data.msg);
+    setIsLogged(false);
+
+    console.log(response);
   };
-
+// console.log(usersData)
   return (
-    <div
-      className={`navbar bg-white text-black z-30   fixed top-0 left-0 right-0 w-full mx-auto border-b shadow-md ${
-        sticky
-          ? "sticky-navbar shadow-md   bg-slate-400   duration-500 transition-all ease-in-out "
-          : ""
-      }`}
-    >
-      {/* mobile Responsive */}
-      <div className="navbar-start">
-        <IoMdMenu
-          className="text-4xl md:hidden"
-          onClick={() => setTogle(!togle)}
-        ></IoMdMenu>
+    <>
+      <SearchBar searchtogle={searchToggele} setsearchtogle={setSearchToggel} />
+      <div
+        className={` navbar  bg-white text-black z-30   fixed top-0 left-0 right-0 w-full mx-auto border-b shadow-md ${
+          sticky
+            ? "sticky-navbar shadow-md   bg-slate-100   duration-500 transition-all ease-in-out "
+            : ""
+        }`}
+      >
+        {/* mobile Responsive */}
+        <div className="navbar-start ">
+          <IoMdMenu
+            className="text-3xl  md:hidden"
+            onClick={() => setTogle(!togle)}
+          ></IoMdMenu>
 
-        <ul
-          className={` md:hidden block  border fixed list-none top-16 duration-500  rounded-md h-screen bg-black opacity-90 w-[95%]  text-white ${
-            togle ? "left-[-100%]" : "left-[-2px]"
-          }`}
-        >
-          <div className="ml-5 gap-y-4 flex flex-col px-10 py-10 text-2xl list-none">
-            <li className="">
-              <Link
+          <ul
+            className={` md:hidden block  overflow-x-hidden fixed overflow-y-auto list-none top-16 duration-500  rounded-md h-[90%] bg-black w-[95%]  text-white ${
+              togle ? "left-[-100%]" : "left-[-2px]"
+            }`}
+          >
+            <div className=" gap-y-4   mb-14  ml-4 flex flex-col px-1 py-10 list-none">
+              <li className="flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
+                <CiHome className=" mr-2" />
+                <Link
+                  to="/"
+                  className="   border-gray-400"
+                  onClick={() => setTogle(!togle)}
+                >
+                  Home
+                </Link>
+              </li>
+              <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
+                <CiBookmark className=" mr-2" />
+                <Link
+                  to="/course"
+                  className=" border-gray-400"
+                  onClick={() => setTogle(!togle)}
+                >
+                  Books
+                </Link>
+              </li>
+              <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
+                <FcAbout className=" mr-2" />
+                <NavLink
+                  to="/about"
+                  className="  border-gray-400"
+                  onClick={() => setTogle(!togle)}
+                >
+                  About
+                </NavLink>
+              </li>
+              <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
+                <CiBellOn className=" mr-2" />
+                <NavLink
+                  to="/contact"
+                  className="  border-gray-400"
+                  onClick={() => setTogle(!togle)}
+                >
+                  Conatct
+                </NavLink>
+              </li>
+              <hr className=" mb-2" />
+            </div>
+            {(usersData?.role === "user" || usersData?.role === "admin") && (
+              <div className=" w-full  top-72 left-0 absolute  ">
+                <div className="w-full  ">
+                  <div className=" w-ful ">
+                    <h3 className=" flex mr-2 md:gap-5 gap-3 text-center">
+                      <MdAdminPanelSettings className=" ml-4 text-xl" />
+                      {usersData?.role} Dashboard
+                    </h3>
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <IoMdHome className="mr-2" />
+                      {usersData?.role} Home
+                    </NavLink>
+
+                    {usersData?.role === "admin" ? (
+                      <div>
+                        <NavLink
+                          onClick={() => setTogle(!togle)}
+                          to="/dashboard/admin/createbook"
+                          className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                        >
+                          <MdCloudUpload className="mr-2" />
+                          Upload Book
+                        </NavLink>
+                        <NavLink
+                          onClick={() => setTogle(!togle)}
+                          to="/dashboard/admin/mangebook"
+                          className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                        >
+                          <GrDocumentUpdate className="mr-2" />
+                          Mange Book
+                        </NavLink>
+                        <NavLink
+                          onClick={() => setTogle(!togle)}
+                          to="/dashboard/admin/product"
+                          className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                        >
+                          <IoBag className="mr-2" />
+                          Products
+                        </NavLink>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="mb-10">
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      to="/dashboard/admin/profile"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <FaUser className="mr-2" />
+                      User
+                    </NavLink>
+
+                    <NavLink
+                      onClick={logoutHandler}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <IoIosLogOut className="mr-2" />
+                      Logout
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <IoSettingsOutline className="mr-2" />
+                      Setting
+                    </NavLink>
+                  </div>
+                  <hr />
+                  <div className="mb-10">
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <img
+                        src={usersData?.image}
+                        alt
+                        className="w-7 h-7 rounded-full mr-2"
+                      />
+                     {usersData?.name}
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <GiUpgrade className="mr-2" />
+                      Upgrade to Pro
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      href="/"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <IoDocumentTextOutline className="mr-2" />
+                      Documatation
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setTogle(!togle)}
+                      to="/help"
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <IoIosHelpBuoy className="mr-2" />
+                      Help
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            )}
+          </ul>
+          <p className="text-[10px] relative md:text-4xl ml-2 hvr-icon-buzz-out hidden md:flex hover:bg-black  text-red-900  hover:text-black font-bold ">
+            <SiStorybook className=" cursor-wait " />
+            <p className=" cursor-pointer">BookS</p>
+          </p>
+        </div>
+
+        {/* laptop */}
+        <div className="navbar w-full justify-center absolute hidden lg:flex">
+          <ul className="menu menu-horizontal space-x-4 px-1 text-[1rem]">
+            <li>
+              <NavLink
                 to="/"
-                className="border-b-2   border-gray-400"
-                onClick={() => setTogle(!togle)}
+                className="border-b antialiased   shadow-2xl  hover:scale-105 border-gray-400"
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/course"
-                className="border-b-2  border-gray-400"
-                onClick={() => setTogle(!togle)}
+              <NavLink
+                to="/book"
+                className="border-b-2 antialiased   shadow-2xl  hover:scale-105  border-gray-400"
               >
                 Books
-              </Link>
+              </NavLink>
             </li>
             <li>
               <NavLink
                 to="/about"
-                className="border-b-2  border-gray-400"
-                onClick={() => setTogle(!togle)}
+                className="border-b-2  antialiased   shadow-2xl  hover:scale-105 border-gray-400"
               >
                 About
               </NavLink>
@@ -87,134 +275,66 @@ const NavBar = () => {
             <li>
               <NavLink
                 to="/contact"
-                className="border-b-2  border-gray-400"
-                onClick={() => setTogle(!togle)}
+                className="border-b-2  antialiased   shadow-2xl  hover:scale-105 border-gray-400"
               >
                 Conatct
               </NavLink>
             </li>
+          </ul>
+        </div>
 
-            
-          </div>
-          
-        </ul>
+        {/* drop dowm */}
 
-        <a className=" BookishBazaar text-[10px] md:text-4xl ml-2 hidden md:block cursor-pointer font-bold ">
-          BookishBazaar
-        </a>
-      </div>
-
-      {/* laptop */}
-      <div className="navbar w-full justify-center hidden lg:flex">
-        <ul className="menu menu-horizontal space-x-4 px-1 text-[1rem]">
-          <li>
-            <NavLink
-              to="/"
-              className="border-b antialiased   shadow-2xl  hover:scale-105 border-gray-400"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/course"
-              className="border-b-2 antialiased   shadow-2xl  hover:scale-105  border-gray-400"
-            >
-              Books
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className="border-b-2  antialiased   shadow-2xl  hover:scale-105 border-gray-400"
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className="border-b-2  antialiased   shadow-2xl  hover:scale-105 border-gray-400"
-            >
-              Conatct
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-      <label className="input md:w-80 md:block hidden bg-white border  border-gray-700  md:flex items-center gap-2">
-        <input type="text" className="grow" placeholder="Search" />
-        <CiSearch />
-      </label>
-{/* drop dowm */}
-
-
-
-
-      {/* end div */}
-      <div className="navbar-end md:flex    md:justify-around md:w-[800px] w-[500px] justify-between">
-        {!isAuthenticated?.user ? (
-          <>
-            <div className="flex gap-1">
-              <NavLink to="/login">
-                <button className="btn px-3 md:hover:bg-white antialiased    hover:border shadow-2xl  hover:scale-105 hover:text-black bg-slate-600 text-white btn-sm">
-                  Login
-                </button>
-              </NavLink>
-              <NavLink to="/signup">
-                <button className="btn  bg-slate-600   md:hover:bg-white  hover:border antialiased   shadow-2xl  hover:scale-105 hover:text-black   hover:border-gray-300 text-white btn-sm">
-                  Signup
-                </button>
-              </NavLink>
+        {/* end div */}
+        <div className="   md:flex absolute md:right-8 right-2   gap-2 md:gap-8">
+          <CiSearch
+            className="md:text-3xl text-2xl cursor-pointer"
+            onClick={() => setSearchToggel(!searchToggele)}
+          />
+          <NavLink to={`/dashboard/${usersData?.role}`}>
+            <div className="relative  inline-block ml-5 hover:block text-left">
+              <button
+                type="button"
+                className="inline-flex text-1xl transition-all duration-700 w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2  font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                Dasboard
+              </button>
             </div>
-          </>
-        ) : (
-          <div className="relative inline-block ml-5 hover:block text-left">
-  <div>
-    <button type="button" className="inline-flex text-1xl w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2  font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
-      {isAuthenticated?.user?.role}
-      <RiArrowDropDownFill onClick={()=>setShow(!show)}   className={`${show?" rotate-0":" rotate-180"} text-3xl`}/>
-    </button>
-  </div>
- {
-  show&& <div className="absolute md:right-0    -z-1  mt-2 w-[13.5rem] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex={-1}>
-  <div className="py-1" role="none">
-    <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex={-1} id="menu-item-0">DashBoard</a>
-    <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex={-1} id="menu-item-1">Support</a>
-    <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex={-1} id="menu-item-2">License</a>
-    <div className="flex gap-x-5 justify-center items-center">
-              <NavLink to="/login">
-                <button
-                  className="btn  bg-slate-600 text-white btn-sm"
-                  onClick={logoutHandler}
-                >
-                  Logout
-                </button>
-              </NavLink>
-              <Link to="/profile">
-                <FaUserAlt className="text-2xl  md:block text-black cursor-pointer" onClick={()=>setShow(false)} />
-              </Link>
-              <Link>
-              <IoSettingsSharp className="text-2xl  md:block text-black cursor-pointer"  />
-              </Link>
-            </div>
-   
-  </div>
-</div>
- }
-</div>
-        )}
-
-        <span className="flex relative  right-5">
-          <NavLink to="/cart">
-            {" "}
-            <FaShoppingCart className=" text-3xl text-black cursor-pointer" onClick={()=>setShow(false)} />
           </NavLink>
-          <div className="badge badge-secondary absolute left-4 md:left-5 l md:absolute">
-            ({cart.length})
+
+          <span
+            className={`flex relative ${
+              usersData?.role === "admin" ? "hidden" : ""
+            }  md:right-5`}
+          >
+            <NavLink to="/cart">
+              {" "}
+              <img
+                className=" w-10 h-10 "
+                src="https://cdn0.iconfinder.com/data/icons/zeir-miscellaneous-011/64/shopping_bag_cart-512.png"
+              />
+              <span className="inline-flex items-center absolute top-4 cursor-pointer  right-3 justify-center w-4 h-4 ms-1  font-semibold text-blue-800 bg-blue-200 rounded-full">
+                ({cart.length})
+              </span>
+            </NavLink>
+          </span>
+          <div className=" h-12 w-12   group  relative rounded-full  cursor-pointer border border-gray-400">
+            <img
+              className=" h-12 w-12 object-fill image-full rounded-full "
+              src={usersData?.image}
+            />
+
+            <div className=" absolute hidden  px-1 py-1 hover:duration-700  hover:transition-all group-hover:block md:-right-8 -right-2 top-14  h-auto  w-fit border border-gray-600 bg-white text-black rounded-md">
+              <p>{usersData?.name}</p>
+              <p>{usersData?.email}</p>
+            </div>
           </div>
-        </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

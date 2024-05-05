@@ -3,6 +3,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "braintree": "^3.23.0",
+    "cloudinary": "^2.2.0",
     "color": "^4.2.3",
     "cookie": "^0.6.0",
     "cookie-parser": "^1.4.6",
@@ -10,15 +11,15 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-formidable": "^1.2.0",
-
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.0",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0",
     "stripe": "^14.24.0"
   },
   "scripts": {
     "start": "script,js",
-    "dev": "node script.js"
+    "dev": "nodemon script.js"
   }
 }

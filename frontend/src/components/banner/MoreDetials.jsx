@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
-
+import Layout from "../../../layout/Layout";
 const MoreDetials = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
@@ -24,27 +24,36 @@ const MoreDetials = () => {
   }, []); 
   console.log(deitials)
   return (
-    <div className="md:mt-[5rem] mt-4">
-   <div className="w-full md:h-[36rem] bg-white md:px-20   md:mt-18 gap-x-40  px-6 flex  flex-col md:flex-row-reverse  ">
+  <>
+  <Layout>
+  <div className="md:mt-[4rem]  text-black  h-fit  mb-32 mt-4">
+   <div className="w-full bg-white md:px-20   md:mt-18 gap-x-40  px-6 flex  flex-col md:flex-row-reverse  ">
  <div className=" order-1 md:order-2 w-full  md:mt-15 mt-12">
- <div className="space-y-6 text-2xl"> <h1 className="text-4xl font-bold">Author:{deitials.author}<br/></h1>
+ <div className="space-y-6 text-2xl">
+   <h1 className="text-4xl font-bold">Author:{deitials.author}<br/></h1>
   <p>
-  country: {deitials.country}, year of publishing: {deitials.year}.
+  Title :{deitials.title}<br/>
   </p>
   <p>
-  language: {deitials.language}, pages number :{deitials.pages}.
+  Category:{deitials.category}<br/>
+  </p>
+  <p>
+  Description:{deitials.description}<br/>
   </p>
   <p>
   price:₹{deitials.price}.
   </p>
   <p>
-  title:{` "${deitials.title}"`}
+ Year:{deitials.year}
+  </p>
+  <p>
+  Quantity:{deitials.quantity}
   </p>
  
   </div>
 
-  <button className="btn mt-4 md:mt-6">Nothing....</button>
-  <div className='border mt-5 border-black'></div>
+ 
+  <div className='border mt-5 border-red-700'></div>
   <div className='mt-5'>
     <p className='text-black'>Shrawan kumar</p>
     <p className='text-black mt-2'>Entrepreneur, Writer and Speaker.</p>
@@ -56,13 +65,15 @@ const MoreDetials = () => {
   </div>
  </div>
  <div className="order-2 w-full ">
- <img src={deitials.img} className='w-full md:w-96  rounded-md h-[28rem] md:mb-6 z-1   mt-16 ' />
+ <img src={deitials.image} className='w-full md:w-96  rounded-md h-[28rem] md:mb-6 z-1   mt-16 ' />
  </div>
 
    
 
     </div>
     </div>
+  </Layout>
+   </>
   )
 }
 

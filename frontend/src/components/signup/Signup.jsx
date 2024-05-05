@@ -4,17 +4,20 @@ import loginlogo from "../../assets/loginlogo.avif";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../../spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../../helper/context/auth";
+import lo from '../../assets/671822c2f63dd5f65d8fd15c9710420b.jpg'
 const Signup = () => {
+  const{isLogged} = useAuth();
   const { loginWithRedirect,users} =  useAuth0();
   console.log(users)
   const [laoding, setLoading] = useState(true);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
-    role: "",
+    role: "user",
     phone: "",
     email: "",
     password: "",
@@ -64,7 +67,14 @@ const Signup = () => {
   return (
     <>
       {/* login container */}
-      <div className="bg-gray-100 flex md:min-h-[80vh] mx-auto relative top-10  mt-16 md:mt-[5rem] mb-32 flex-row-reverse rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+    <div   style={{
+        backgroundImage: `url(${lo})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+  
+      className={` h-screen `}>
+    <div className="bg-gray-100 flex border backdrop-blur-mda   bg-transparent text-white border-gray-600    mx-auto relative  overflow-hidden overflow-y-hidden flex-row-reverse rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
         <div className="md:w-1/2 px-8 md:px-16 mt-7">
           <h2 className="font-bold text-2xl text-[#002D74]">Signup</h2>
@@ -76,7 +86,7 @@ const Signup = () => {
             value={user.role}
             className="flex flex-col  gap-4"
           >
-            <select
+            {/* <select
               name="role"
               onChange={inputChangeHandler}
               className="p-2 mt-8 rounded-xl outline-none"
@@ -92,7 +102,7 @@ const Signup = () => {
               <option name="user" selected>
                 user
               </option>
-            </select>
+            </select> */}
             <input
               className="p-2   rounded-xl outline-none"
               type="text"
@@ -129,12 +139,12 @@ const Signup = () => {
               {isPasswordVisible ? (
                 <FaEye
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-2.5 md:right-[.8rem] md:top-[20%] text-2xl"
+                  className="absolute right-3 top-2.5 cursor-pointer md:right-[.8rem] md:top-[20%] text-2xl"
                 />
               ) : (
                 <FaEyeSlash
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-2.5 md:right-[.8rem] md:top-[20%] text-2xl"
+                  className="absolute right-3 top-2.5 cursor-pointer md:right-[.8rem] md:top-[20%] text-2xl"
                 />
               )}
             </div>
@@ -167,7 +177,8 @@ const Signup = () => {
               Signup
             </button>
           </form>
-          <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
+           <Link to="/login"> <p className=" hover:underline  text-center text-wrap  hover:text-black ">already have an account login here!</p></Link>
+          <div className=" grid grid-cols-3 items-center text-gray-400">
             <hr className="border-gray-400" />
             <p className="text-center text-sm">OR</p>
             <hr className="border-gray-400" />
@@ -186,6 +197,7 @@ const Signup = () => {
           </div>
         )}
       </div>
+    </div>
     </>
   );
 };

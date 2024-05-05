@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import logo from "../../assets/profile.webp";
 import { useAuth } from "../../helper/context/auth";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaCamera, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdUpload } from "react-icons/md";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -10,7 +10,13 @@ import toast from "react-hot-toast";
 // import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 const ProfilePage = () => {
+  const cloud_name = "dmmnkipms";
+  const preset_key = "backcb9s";
+  const { usersData, setUsersData } = useAuth();
+  const [photo, setPhoto] = useState(null); // Initialize photo state as null
+
   // const [cookies, removeCookie] = useCookies([]);
+  // console.log(usersData);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -18,10 +24,11 @@ const ProfilePage = () => {
     confirmpassword: "",
     name: "",
     phone: "",
+    img_url: "",
   });
   // const [selectedFile, setSelectedFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
+  const inputRef = useRef();
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal); // Toggle showModal state
   };
@@ -39,69 +46,95 @@ const ProfilePage = () => {
     }));
   };
 
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
   // console.log(isAuthenticated.user.image)
   const sumbitSignupForm = async (e) => {
     e.preventDefault();
-    console.log(user);
-    try {
-      const response = await axios.put(
-        "http://localhost:3000/api/v1/profile",
-        user,
-        { withCredentials: true }
+    // console.log(user);
+    const data = new FormData();
+    const element = document.getElementById("imageUpload");
+    if (element?.files) {
+      const fileImg = element.files[0];
+      data.append("file", fileImg);
+    }
+    data.append("upload_preset", preset_key);
+    const cloudiplaodimage = async () => {
+      const result = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        data
       );
-      console.log(response);
-      navigate("/");
-      toast.success(response.data.message);
-      setUser({
-        email: "",
-        password: "",
-        confirmpassword: "",
-        name: "",
-        phone: "",
-      });
-    } catch (error) {
-      toast.error(error.response.data.msg);
+
+      return result.data;
+    };
+    const res = await cloudiplaodimage();
+    const img_url_sec = res.secure_url;
+    console.log(img_url_sec);
+    user.img_url = img_url_sec;
+    console.log(user);
+
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/profile",
+      user,
+      { withCredentials: true }
+    );
+    console.log(response);
+    // navigate("/");
+    window.location.reload();
+    toast.success(response.data.message);
+    setUser({
+      email: "",
+      password: "",
+      confirmpassword: "",
+      name: "",
+      phone: "",
+    });
+    setShowModal(false);
+  };
+
+  const handleImageUpload = async () => {
+    console.log("upload");
+    const element = document.getElementById("imageUpload");
+    if (element?.files) {
+      const file = element.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        setPhoto(url);
+        // formik.setFieldValue("file", file);
+      }
     }
   };
 
+  // remove image
+  // const handleRemoveImage = () => {
+  //   if (inputRef.current) {
+  //     inputRef.current.value = "";
+  //   }
+  //   setImagePreview(value.imageUrl);
+  //   formik.setFieldValue("file", null);
+  // }
   return (
-    <div className="md:mt-10 mt-10    relative h-screen flex flex-col justify-center items-center  bg-slate-800">
-      <h1 className="text-3xl mt-10 mb-4 border border-gray-500 px-8 rounded-lg">
+    <div className="  border border-red-800 w-full   relative h-screen flex flex-col justify-center items-center  bg-slate-800">
+      <h1 className="text-3xl  mb-4 border border-gray-500 px-8 rounded-lg">
         Profile Page
       </h1>
       <div className="flip-card rounded-xl flex justify-center items-center  w-full md:max-w-96 ">
         <div className="flip-card-inner rounded-xl">
           <div className="flip-card-front rounded-xl">
             <img
-              src={logo}
+              src={usersData?.image}
               alt="Avatar"
               className=" h-[25rem] w-full rounded-xl"
             />
           </div>
           <div className="flip-card-back rounded-xl border flex  flex-col justify-center text-2xl p-4 aspect-square">
-            <h1>Name: {isAuthenticated.user.name}</h1>
-            <p>Phone: {isAuthenticated.user.phone}</p>
-            <p>Email: {isAuthenticated.user.email}</p>
-            <p>Role: {isAuthenticated.user.role}</p>
+            <h1>Name: {usersData?.name}</h1>
+            <p>Phone: {usersData?.phone}</p>
+            <p>Email: {usersData?.email}</p>
+            <p>Role: {usersData?.role}</p>
           </div>
         </div>
       </div>
       <div className="flex  md:mt-4 md:max-w-[30%]  flex-wrap w-full mb-6  justify-evenly relative  items-center">
-        <div className="min-w-24 border relative border-gray-700 rounded-full flex justify-center items-center">
-          <span className=" px-2 py-2">
-            {" "}
-            <input
-              id="fileInput"
-              type="file"
-              // onChange={(e) => setSelectedFile(e.target.value[0])}
-              className="hidden"
-            />{" "}
-            <label htmlFor="fileInput">
-              <MdUpload className=" cursor-pointer" />
-            </label>
-          </span>
-        </div>
         <button
           className="border border-gray-700 px-4 py-1  rounded-2xl uppercase "
           onClick={toggleModal}
@@ -109,35 +142,52 @@ const ProfilePage = () => {
           Update Profile
         </button>
       </div>
+
+      {/* update profile  */}
       {showModal && (
         <>
-          <div className=" absolute  inset-0 w-full mt-10 md:mt-0 mx-auto md:max-w-[30%] md:max-h-[90%] ">
-            <div className="modal-box w-full h-full  md:mt-12  inset-0   ">
+          <div className=" absolute   md:right-10 top-0 w-full mt-10 md:mt-0 mx-auto md:max-w-[30%] md:max-h-[90%] ">
+            <div className="modal-box border w-full h-full  md:mt-12  inset-0   ">
               <IoMdClose
                 className="cursor-pointer absolute right-8 top-8 text-4xl"
                 onClick={toggleModal}
               />
-              <div className="avatar  md:mb-14">
-                {isAuthenticated.user.image ? (
-                  <div className="min-w-24 border border-gray-700 rounded-full">
-                    <img src={isAuthenticated.user.image} alt="Profile" />
-                  </div>
-                ) : (
-                  <div className="min-w-24 border relative border-gray-700 rounded-full flex justify-center items-center">
+              <div className="  flex gap-12 w-72">
+                <div className="avatar  md:mb-14">
+                  <div className="min-w-24  border relative border-gray-700 rounded-full flex justify-center items-center">
                     <span className=" absolute top-7 left-7 text-4xl">
                       {" "}
                       <input
-                        id="fileInput"
                         type="file"
-                        // onChange={(e) => setSelectedFile(e.target.value[0])}
+                        accept="image/*"
+                        id="imageUpload"
+                        style={{ display: "none" }}
+                        onChange={handleImageUpload}
+                        ref={inputRef}
                         className="hidden"
                       />{" "}
-                      <label htmlFor="fileInput">
-                        <MdUpload className=" cursor-pointer" />
-                      </label>{" "}
+                      <label htmlFor="imageUpload">
+                        <FaCamera className="cursor-pointer" />
+                      </label>
                     </span>
                   </div>
-                )}
+                </div>
+                <div className="mb-3 w-24 h-24 border relative rounded-full ">
+                  {photo && (
+                    <div className="text-center rounded-full w-24 h-24 ">
+                      <img
+                        src={photo}
+                        alt="product_photo"
+                        height={"200px"}
+                        className=" rounded-full h-24 w-24"
+                      />
+                      <IoMdClose
+                        className="cursor-pointer absolute right-2 top-2 text-black  text-2xl"
+                        onClick={() => setPhoto("")}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
               <div className=" w-full ">
                 <form

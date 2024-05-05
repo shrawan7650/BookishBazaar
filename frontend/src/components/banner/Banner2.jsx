@@ -4,14 +4,18 @@ const Banner_2 = () => {
   return (
     <>
   
-    <div className="w-full md:h-[36rem] bg-white md:px-20   md:mt-18 gap-x-40  px-4 flex  flex-col md:flex-row-reverse  ">
+    <div className="w-full md:h-[36rem] bg-white md:px-20 z-0   md:mt-18 gap-x-40  px-4 flex  flex-col md:flex-row-reverse  ">
  <div className=" order-1 md:order-2 w-full  md:mt-32 mt-12">
- <div className="space-y-6"> <h1 className="text-4xl font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam quos explicabo mollitia. Beatae facilis suscipit illo, autem voluptas reprehenderit! Obcaecati quisquam consectetur odit ratione alias expedita, pariatur enim repellat consequuntur.
-  </p></div>
+ <div className="space-y-6"> 
+ <h1 className="text-4xl font-bold">Discover Inspiring Stories</h1>
+            <p>
+              Dive into captivating narratives that ignite your imagination and
+              stir your soul. Explore a world of adventure, wisdom, and
+              inspiration in every page.
+            </p>
+  </div>
 
-  <button className="btn mt-4 md:mt-6 bg-red-800 text-white">Secondary</button>
+  <button className="btn mt-4 md:mt-6 bg-red-800 text-white">Explore Now</button>
   <div className=''></div>
   <div className='mt-5'>
     <p className='text-black hover:underline'>Shrawan kumar</p>

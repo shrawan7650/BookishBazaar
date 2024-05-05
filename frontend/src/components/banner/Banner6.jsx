@@ -1,4 +1,5 @@
 
+import toast from 'react-hot-toast'
 import banner_subscribe from '../../assets/susbcribe-image.png'
 const Banner6 = () => {
   return (
@@ -10,7 +11,7 @@ const Banner6 = () => {
  </div>
 <div className='flex flex-row justify-between gap-4 md:mt-20 items-baseline mt-10 mb-5 '>
 <input type="text" placeholder="Type here" className="input bg-white w-full max-w-xm" />
-  <button className="btn mt-4  px-12 md:mt-6 bg-red-950 hover:bg-slate-900 text-white">Sumbit</button>
+  <button onClick={()=>toast.success("Thanks For Subscribe")} className="btn mt-4 hover:rounded-box  px-12 md:mt-6 bg-red-950 hover:bg-slate-900 text-white">Sumbit</button>
 </div>
  </div>
  <div className="order-1 w-full ">

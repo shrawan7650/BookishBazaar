@@ -4,7 +4,7 @@ const databaseConnection = require("./config/db.js");
 const formidableMiddleware = require("express-formidable");
 require("dotenv").config();
 const morgan = require("morgan");
-const router = require("./routes/route.js");
+const router = require("./routes/user/route.js");
 const cookieParser = require("cookie-parser");
 //midleware
 app.use(express.json());
@@ -13,8 +13,8 @@ app.use(
   cors({
     credentials: true,
     origin: "http://localhost:5173",
-    methods:["GET","POST"],
-    origin:{}
+    methods: ["GET", "POST", "PUT", "DELETE"],
+   
   })
 );
 app.use(morgan("dev"));

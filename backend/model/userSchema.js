@@ -32,8 +32,8 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin"],
   },
   image: {
-    data: Buffer,
-    contentType: String,
+    type:String
+   
     
     
   },

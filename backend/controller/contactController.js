@@ -1,3 +1,5 @@
+const { generateContactConfirmationHTML } = require("../helpers/contactSend");
+const { mailSend } = require("../helpers/mailSend");
 const Contact = require("../model/contactSchema");
 exports.contactController = async (req, res) => {
   try {
@@ -10,7 +12,12 @@ exports.contactController = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
-
+    const emailtype = "Contact";
+    mailSend(
+      email,
+      emailtype,
+      generateContactConfirmationHTML(name, email, message)
+    );
     res.json({
       msg: "sumbit succsfully",
       savedUser,

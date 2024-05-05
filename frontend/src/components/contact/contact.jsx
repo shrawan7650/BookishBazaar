@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Layout from "../../../layout/Layout";
 const Contact = () => {
   const [contact, setContact] = useState({
     name: "",
@@ -32,14 +33,16 @@ const Contact = () => {
   };
   return (
     <>
+    <Layout>
+
+   
       <div className="w-full flex  z-0 justify-center items-center flex-col bg-[#FCEBE6] mt-10 min-h-[32rem]">
         <h1 className="md:text-6xl text-4xl text-black  font-medium">
           Contact
         </h1>
         <div className="w-full">
           <p className="text-black text-2xl text-center mt-5 ">
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-            fugit
+          Have questions or want to get in touch with us? Feel free to reach out!
           </p>
         </div>
       </div>
@@ -50,8 +53,7 @@ const Contact = () => {
               Get In Touch
             </h1>
             <p>
-              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-              aut fugit
+            Got a question? Want to learn more about our bookstore? Shoot us a message!
             </p>
             <span className="flex items-center gap-5 text-1.5xl">
               {" "}
@@ -135,6 +137,7 @@ const Contact = () => {
         </div>
       </div>
       <Banner6 className="" />
+      </Layout>
     </>
   );
 };

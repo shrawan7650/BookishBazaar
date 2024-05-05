@@ -1,5 +1,6 @@
 import banner from '../../assets/banner.jpg'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css';  
 const Banner4 = () => {
 
   return (
@@ -7,7 +8,7 @@ const Banner4 = () => {
   
     <div className="w-full md:h-[48rem] bg-[#FCEBE6] md:px-20  mt-16 md:mt-18 gap-x-20 mb-2  px-4 flex  flex-col-reverse gap-y-5 md:flex-row  ">
     <div className=" order-1 md:order-1 md:w-[30%]  md:mt-32 mt-12">
-    <div className="space-y-6"> <h1 className="text-4xl font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+    <div className="space-y-6"> <h1 className="text-4xl font-bold text-red-500" >Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
      <p>
        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam quos explicabo mollitia. Beatae facilis suscipit illo, autem voluptas reprehenderit! Obcaecati quisquam consectetur odit ratione alias expedita, pariatur enim repellat consequuntur.
      </p></div>

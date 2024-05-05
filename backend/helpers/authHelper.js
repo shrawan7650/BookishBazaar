@@ -4,8 +4,8 @@ const bcryptjs = require("bcrypt");
 // password hash function
 exports.hashPassword = async ({ password }) => {
   try {
-    const saltRound = 10;
-    const hashPassword = await bcryptjs.hash(password, saltRound);
+    
+    const hashPassword = await bcryptjs.hash(password, 10);
     return hashPassword;
   } catch (error) {
     console.log("Hasing password logic", error);

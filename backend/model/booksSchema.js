@@ -1,15 +1,13 @@
 const mongoose = require("mongoose");
 
 const bookeSchema = new mongoose.Schema({
-  name: String,
+  description: String,
   price: Number,
   category: String,
   title: String,
-  img: String,
+  image: String,
   author: String,
-  language: String,
-  country: String,
-  pages: Number,
+  value:String,
   year: Number,
   quantity: String,
 });

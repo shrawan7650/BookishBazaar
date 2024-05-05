@@ -1,61 +1,62 @@
-/* eslint-disable react/prop-types */
 import axios from "axios";
-
-import { useState, useEffect, useContext, createContext,useMemo  } from "react";
-
+import { useState, useEffect, useContext, createContext } from "react";
+import Cookies from "js-cookie";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
+  const [usersData, setUsersData] = useState("");
+  const[loader,setLoader] = useState(false)
+  const [isLogged, setIsLogged] = useState(true);
+ 
+  // Initialize state with the result of initialState function
 
-  
-  const [isAuthenticated, setIsAuthenticated] = useState({
-    token: "",
-    user: null,
-  });
-  
+useEffect(()=>{
+  const getUSer = async()=>{
+    const response = await axios.get("http://localhost:3000/api/v1/getuser",{withCredentials:true});
+    // console.log(response.data.user)
+    setUsersData(response.data.user);
+  };
+  getUSer();
+},[isLogged])
+
   useEffect(() => {
-    const data = localStorage.getItem("token");
-    // console.log(data)
-    if (data) {
-      const parsedData = JSON.parse(data);
-      console.log("this parase", parsedData);
-      setIsAuthenticated({
-        ...isAuthenticated,
-        user: parsedData.user,
-        token: parsedData.token,
-      });
+    const token = Cookies.get("token");
+    if (!token) {
+      setIsLogged(false);
+    } else {
+      setIsLogged(true);
     }
-  }, []);
-  
-  console.log(isAuthenticated.token)
-  
-  useEffect(() => {
-    const getAllBook = async () => {
-      const config = {
-        headers: {
-          Authorization: isAuthenticated?.token,
-        },
-      };
-      console.log(config)
+
+    const getAllBooks = async () => {
+      setLoader(true)
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/books",config);
-        // console.log(response.data);/
+        const response = await axios.get("http://localhost:3000/api/v1/books");
+        console.log(response.data);
         setBooks(response?.data?.books);
+        setLoader(false)
       } catch (err) {
         console.log(err);
       }
     };
-    getAllBook();
+    getAllBooks();
   }, []);
+
   return (
-    isAuthenticated && (
-      <AuthContext.Provider
-        value={{ isAuthenticated, setIsAuthenticated, books }}
-      >
-        {children}
-      </AuthContext.Provider>
-    )
+    <AuthContext.Provider
+      value={{
+        isLogged,
+        setIsLogged,
+        books,
+        usersData,
+        setUsersData,
+        setBooks,
+        loader,
+   
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
 
