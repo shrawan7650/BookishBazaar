@@ -47,15 +47,18 @@ const NavBar = () => {
   const [togle, setTogle] = useState(true);
 
   const logoutHandler = async () => {
-    const response = await axios.get("http://localhost:3000/api/v1/logout", {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      "https://bookishbazaar-zf22.onrender.com/api/v1/logout",
+      {
+        withCredentials: true,
+      }
+    );
     toast.success(response.data.msg);
     setIsLogged(false);
 
     console.log(response);
   };
-// console.log(usersData)
+  // console.log(usersData)
   return (
     <>
       <SearchBar searchtogle={searchToggele} setsearchtogle={setSearchToggel} />
@@ -208,7 +211,7 @@ const NavBar = () => {
                         alt
                         className="w-7 h-7 rounded-full mr-2"
                       />
-                     {usersData?.name}
+                      {usersData?.name}
                     </NavLink>
                     <NavLink
                       onClick={() => setTogle(!togle)}

@@ -73,7 +73,7 @@ const ProfilePage = () => {
     console.log(user);
 
     const response = await axios.put(
-      "http://localhost:3000/api/v1/profile",
+      "https://bookishbazaar-zf22.onrender.com/api/v1/profile",
       user,
       { withCredentials: true }
     );

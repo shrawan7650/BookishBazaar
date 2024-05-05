@@ -15,7 +15,7 @@ const ResetPasswordPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/change-password",
+        "https://bookishbazaar-zf22.onrender.com/api/v1/change-password",
         { email, otp, password: newPassword }
       );
       toast.success(response.data.msg);

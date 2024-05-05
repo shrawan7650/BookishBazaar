@@ -22,7 +22,7 @@ const MangeBook = () => {
     try {
       let filteredArray = books.filter((book) => book._id !== id);
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/deletebook/${id}`,
+        `https://bookishbazaar-zf22.onrender.com/api/v1/deletebook/${id}`,
         { withCredentials: true }
       );
       // Update books state after successful deletion
@@ -41,7 +41,7 @@ const MangeBook = () => {
   const getAllBooks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/books?pageNumber=${pageNumber}&pageSize=${pageSize}`
+        `https://bookishbazaar-zf22.onrender.com/api/v1/books?pageNumber=${pageNumber}&pageSize=${pageSize}`
       );
       console.log(response.data);
       setBooks(response?.data?.books);

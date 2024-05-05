@@ -60,7 +60,6 @@
 //     return checkoutItems;
 //   };
 
- 
 //  // Checkout handler function
 //  const checkOutHandler = async () => {
 //   try {
@@ -68,7 +67,7 @@
 //     const checkoutData = prepareCheckoutData();
 // // console.log(checkoutData)
 //     // Make a POST request to your backend with the checkout data
-//     const response = await axios.post("http://localhost:3000/api/v1/checkout", { items: checkoutData });
+//     const response = await axios.post("https://bookishbazaar-zf22.onrender.com/api/v1/checkout", { items: checkoutData });
 //   console.log(response)
 //     // Redirect to the checkout URL received from the backend
 //     window.location = response.url;
@@ -120,7 +119,6 @@
 //     }
 //   };
 
-
 // console.log(cart[0])
 //   // console.log("this is value", value);
 //   return (
@@ -149,16 +147,16 @@
 //             {cart.length !== 0 ? (
 //               <div className="flex items-center flex-col border border-black md:flex-row flex-wrap hover:bg-gray-100 -mx-9 px-6 py-5">
 //                 {cart?.map((items) => {
-                 
+
 //                   return (
 //                     <>
-                
+
 //                       <div
 //                         key={items}
 //                         className="flex md:w-[50%] flex-col border border-red-700 md:flex-row w-[]  md:h-32 mb-3  "
 //                       >
 //                         {" "}
-                    
+
 //                         <div className="w-full md:w-[40%]  h-full ">
 //                           <img
 //                             className="h-32  w-[50%]  rounded-lg md:w-[100%] object-fill"
@@ -184,7 +182,7 @@
 //                           type="text"
 //                           defaultValue={0}
 //                           value={items.quantity}
-                        
+
 //                         />
 //                         <IoAddOutline
 //                           onClick={() => incrementQuantity(items._id)}
@@ -196,7 +194,7 @@
 //                       </span>
 //                       <span className="text-center md:mb-0 md:ml-10  mb-5 border  font-semibold text-sm">
 //                         <MdDelete className=" text-3xl cursor-pointer"  onClick={() => removeCartItem(items.id)}/>
-                       
+
 //                       </span>
 //                     </>
 //                   );
@@ -249,7 +247,7 @@
 //                 <input
 //                   type="text"
 //                   id="promo"
-//                   name="promoCode" 
+//                   name="promoCode"
 //                   placeholder="Enter your code"
 //                   className="p-2 text-sm w-full"
 //                   value={promeCodeValue.promoCode}

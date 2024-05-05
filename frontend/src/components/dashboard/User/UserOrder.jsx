@@ -11,7 +11,7 @@ const UserOrder = () => {
     const getOrderItem = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/getorder",
+          "https://bookishbazaar-zf22.onrender.com/api/v1/getorder",
           { withCredentials: true }
         );
         console.log(response);
@@ -35,24 +35,66 @@ const UserOrder = () => {
             <table className="table overflow-auto">
               <thead>
                 <tr>
-                  <th className="text-sm tracking-wide overflow-auto px-1" scope="col">#</th>
-                  <th  className="text-sm tracking-wide overflow-auto px-1" scope="col">Status</th>
-                  <th  className="text-sm tracking-wide overflow-auto px-1" scope="col">Buyer</th>
-                  <th  className="text-sm tracking-wide overflow-auto px-1" scope="col">Date</th>
-                  <th  className="text-sm tracking-wide overflow-auto px-1" scope="col">Payment</th>
-                  <th  className="text-sm tracking-wide overflow-auto px-1" scope="col">Quantity</th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    #
+                  </th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    Status
+                  </th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    Buyer
+                  </th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    Date
+                  </th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    Payment
+                  </th>
+                  <th
+                    className="text-sm tracking-wide overflow-auto px-1"
+                    scope="col"
+                  >
+                    Quantity
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {orders?.map((item, index) => {
                   return item.products.map((product, pro_index) => (
                     <tr key={product._id || pro_index}>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{index + 1+pro_index}</td>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{item.status}</td>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{item.buyer.name}</td>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{getFormattedDate(item.createdAt)}</td>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{item.payment.payment_status? "Success" : "Failed"}</td>
-                      <td  className="text-sm tracking-wide overflow-auto px-1">{product.quantity}</td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {index + 1 + pro_index}
+                      </td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {item.status}
+                      </td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {item.buyer.name}
+                      </td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {getFormattedDate(item.createdAt)}
+                      </td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {item.payment.payment_status ? "Success" : "Failed"}
+                      </td>
+                      <td className="text-sm tracking-wide overflow-auto px-1">
+                        {product.quantity}
+                      </td>
                     </tr>
                   ));
                 })}

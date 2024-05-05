@@ -26,7 +26,7 @@ const CreateBook = () => {
       console.log("if id", id);
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/v1/updatebook/${id}`,
+          `https://bookishbazaar-zf22.onrender.com/api/v1/updatebook/${id}`,
           { ...uploadBook },
           { withCredentials: true }
         );
@@ -37,13 +37,12 @@ const CreateBook = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/createbook",
+          "https://bookishbazaar-zf22.onrender.com/api/v1/createbook",
           { ...uploadBook },
           { withCredentials: true }
         );
         toast.success(response.data.message);
         console.log(response.data);
-      
       } catch (err) {
         console.log(err);
       }

@@ -19,7 +19,7 @@ const AdminOrder = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/v1/all-orders",
+        "https://bookishbazaar-zf22.onrender.com/api/v1/all-orders",
         { withCredentials: true }
       );
       setOrders(data);
@@ -39,7 +39,7 @@ const AdminOrder = () => {
     console.log(value);
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/order-status/${orderId}`,
+        `https://bookishbazaar-zf22.onrender.com/api/v1/order-status/${orderId}`,
         { status: value }
       );
       console.log(data);
@@ -54,54 +54,71 @@ const AdminOrder = () => {
     <div className=" w-full ">
       <div className="w-full  ">
         <h1 className="text-center">All Orders</h1>
-        
-          <table className="  md:table  ">
-            <thead>
-              <tr>
-                <th className="text-sm tracking-wide p-1" scope="">#</th>
-                <th className="text-sm tracking-wide p-1" scope="">Status</th>
-                <th className="text-sm tracking-wide p-1" scope="">Buyer</th>
-                <th className="text-sm tracking-wide p-1" scope="">Date</th>
-                <th className="text-sm tracking-wide p-1" scope="">Payment</th>
-                <th className="text-sm tracking-wide p-1" scope="">Quantity</th>
-              </tr>
-            </thead>
-            <tbody className=" border p-2">
-              {orders?.map((item, index) => {
-                return item.products.map((product, pro_index) => (
-                  <tr key={product._id || pro_index}>
-                    <td>{index + 1 + pro_index}</td>
-                    <td>
-                      <select
-                        onChange={(event) =>
-                          handleChange(item._id, pro_index, event)
-                        }
-                        defaultValue={item.status}
-                      
-                        className=" cursor-pointer outline-none bg-white text-black"
-                      >
-                        {status?.map((s, index) => {
-                         
-                        return(
+
+        <table className="  md:table  ">
+          <thead>
+            <tr>
+              <th className="text-sm tracking-wide p-1" scope="">
+                #
+              </th>
+              <th className="text-sm tracking-wide p-1" scope="">
+                Status
+              </th>
+              <th className="text-sm tracking-wide p-1" scope="">
+                Buyer
+              </th>
+              <th className="text-sm tracking-wide p-1" scope="">
+                Date
+              </th>
+              <th className="text-sm tracking-wide p-1" scope="">
+                Payment
+              </th>
+              <th className="text-sm tracking-wide p-1" scope="">
+                Quantity
+              </th>
+            </tr>
+          </thead>
+          <tbody className=" border p-2">
+            {orders?.map((item, index) => {
+              return item.products.map((product, pro_index) => (
+                <tr key={product._id || pro_index}>
+                  <td>{index + 1 + pro_index}</td>
+                  <td>
+                    <select
+                      onChange={(event) =>
+                        handleChange(item._id, pro_index, event)
+                      }
+                      defaultValue={item.status}
+                      className=" cursor-pointer outline-none bg-white text-black"
+                    >
+                      {status?.map((s, index) => {
+                        return (
                           <option key={index} value={s.status}>
-                          {s}
-                        </option>
-                        )
-                        })}
-                      </select>
-                    </td>
-                    <td className="text-sm tracking-wide overflow-auto px-1">{item.buyer.name}</td>
-                    <td className="text-sm tracking-wide overflow-auto px-1">{getFormattedDate(item.createdAt)}</td>
-                    <td className="text-sm tracking-wide overflow-auto px-1">{item.payment.payment_status}</td>
-                    <td className="text-sm tracking-wide overflow-auto px-1">{product.quantity}</td>
-                  </tr>
-                ));
-              })}
-            </tbody>
-          </table>
-        </div>
+                            {s}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </td>
+                  <td className="text-sm tracking-wide overflow-auto px-1">
+                    {item.buyer.name}
+                  </td>
+                  <td className="text-sm tracking-wide overflow-auto px-1">
+                    {getFormattedDate(item.createdAt)}
+                  </td>
+                  <td className="text-sm tracking-wide overflow-auto px-1">
+                    {item.payment.payment_status}
+                  </td>
+                  <td className="text-sm tracking-wide overflow-auto px-1">
+                    {product.quantity}
+                  </td>
+                </tr>
+              ));
+            })}
+          </tbody>
+        </table>
       </div>
- 
+    </div>
   );
 };
 

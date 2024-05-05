@@ -43,7 +43,7 @@ const Cartpage = () => {
   const removeCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/removecart/${id}`,
+        `https://bookishbazaar-zf22.onrender.com/api/v1/removecart/${id}`,
         { withCredentials: true }
       );
       console.log(res.data);
@@ -82,7 +82,7 @@ const Cartpage = () => {
       console.log(checkoutData);
       // Make a POST request to your backend with the checkout data
       const response = await axios.post(
-        "http://localhost:3000/api/v1/checkout",
+        "https://bookishbazaar-zf22.onrender.com/api/v1/checkout",
         { items: checkoutData },
         { withCredentials: true }
       );
@@ -135,7 +135,7 @@ const Cartpage = () => {
       console.log("quantity", newQuantity);
 
       const response = await axios.put(
-        `http://localhost:3000/api/v1/update-cart-quantity/${cart._id}`,
+        `https://bookishbazaar-zf22.onrender.com/api/v1/update-cart-quantity/${cart._id}`,
         { quantity: newQuantity, productId },
         { withCredentials: true }
       );

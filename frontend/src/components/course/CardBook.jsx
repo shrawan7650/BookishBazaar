@@ -38,7 +38,7 @@ const CardBook = ({ item, loader }) => {
       const id = item._id;
       console.log(id);
       const response = await axios.post(
-        "http://localhost:3000/api/v1/cart",
+        "https://bookishbazaar-zf22.onrender.com/api/v1/cart",
         {
           product_id: id,
         },
