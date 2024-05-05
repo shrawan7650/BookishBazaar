@@ -1,7 +1,7 @@
 const User = require("../model/userSchema.js");
 const { mailSend } = require("../helpers/mailSend.js");
 const mongoose = require("mongoose");
-const bcryptjs = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Otp = require("../model/otpSchema.js");
 const Books = require("../model/booksSchema.js");
