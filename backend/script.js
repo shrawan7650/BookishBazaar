@@ -11,9 +11,9 @@ app.use(express.json());
 var cors = require("cors");
 app.use(
   cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT"],
     credentials: true,
-    origin: "https://bookish-bazaar-w7ym.vercel.app/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(morgan("dev"));
