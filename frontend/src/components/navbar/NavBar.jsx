@@ -95,7 +95,7 @@ const NavBar = () => {
               <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
                 <CiBookmark className=" mr-2" />
                 <NavLink
-                  to="/course"
+                  to="/book"
                   className=" border-gray-400"
                   onClick={() => setTogle(!togle)}
                 >
