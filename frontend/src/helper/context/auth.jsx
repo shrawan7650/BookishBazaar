@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const getUSer = async () => {
       const response = await axios.get(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/getuser",
+        `${import.meta.env.VITE_DEV_BASE_URL}getuser`, // Corrected URL format
         {
           withCredentials: true,
         }

@@ -84,23 +84,23 @@ const NavBar = () => {
             <div className=" gap-y-4   mb-14  ml-4 flex flex-col px-1 py-10 list-none">
               <li className="flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
                 <CiHome className=" mr-2" />
-                <Link
+                <NavLink
                   to="/"
                   className="   border-gray-400"
                   onClick={() => setTogle(!togle)}
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
                 <CiBookmark className=" mr-2" />
-                <Link
+                <NavLink
                   to="/course"
                   className=" border-gray-400"
                   onClick={() => setTogle(!togle)}
                 >
                   Books
-                </Link>
+                </NavLink>
               </li>
               <li className=" flex items-center  py-2.5 text-gray-500 hover:text-orange-600 group">
                 <FcAbout className=" mr-2" />

@@ -8,11 +8,11 @@ const router = require("./routes/user/route.js");
 const cookieParser = require("cookie-parser");
 //midleware
 app.use(express.json());
-var cors = require("cors");
+const cors = require("cors");
 app.use(
   cors({
-    origin: "*",
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT"],
+    origin: "https://bookish-bazaar-w7ym.vercel.app",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
   })
 );

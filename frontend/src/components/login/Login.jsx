@@ -43,7 +43,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/login",
+        `${import.meta.env.VITE_DEV_BASE_URL}login`,
         user
       );
       console.log(response.data.user);
