@@ -12,7 +12,7 @@ var cors = require("cors");
 app.use(
   cors({
     credentials: true,
-    origin: "https://bookish-bazaar-lspk.vercel.app/",
+    origin: "https://bookish-bazaar-w7ym.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
