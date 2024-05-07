@@ -10,13 +10,15 @@ export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(true);
 
   // Initialize state with the result of initialState function
-
+  const token = Cookies.get("token");
   useEffect(() => {
     const getUSer = async () => {
       const response = await axios.get(
         `${import.meta.env.VITE_DEV_BASE_URL}getuser`, // Corrected URL format
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       // console.log(response.data.user)

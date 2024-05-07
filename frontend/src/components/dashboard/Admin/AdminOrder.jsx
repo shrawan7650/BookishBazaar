@@ -5,7 +5,11 @@ import axios from "axios";
 // import { Select } from "antd";
 // const { Option } = Select;
 
+import Cookies from "js-cookie";
 const AdminOrder = () => {
+  
+
+const token = Cookies.get("token");
   const [changeStatus, setCHangeStatus] = useState("");
   const [status, setStatus] = useState([
     "Not Process",
@@ -20,7 +24,12 @@ const AdminOrder = () => {
     try {
       const { data } = await axios.get(
         "https://bookishbazaar-zf22.onrender.com/api/v1/all-orders",
-        { withCredentials: true }
+       
+ {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+}
       );
       setOrders(data);
       console.log(data);

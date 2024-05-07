@@ -14,14 +14,19 @@ import axios from "axios";
 import { useAuth } from "../../../helper/context/auth";
 import toast from "react-hot-toast";
 import Layout from "../../../../layout/Layout";
+import Cookies from "js-cookie";
 const DashBoard = () => {
+
+  const token = Cookies.get("token");
   const { setIsLogged, usersData } = useAuth();
   console.log(usersData);
   const logoutHandler = async () => {
     const response = await axios.get(
       "https://bookishbazaar-zf22.onrender.com/api/v1/logout",
       {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     toast.success(response.data.msg);

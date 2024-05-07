@@ -4,7 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
+import Cookies from "js-cookie";
 const MangeBook = () => {
+  
+
+const token = Cookies.get("token");
   const [pageNumber, setpageNumber] = useState(0);
   const pageSize = 10;
 
@@ -23,7 +27,11 @@ const MangeBook = () => {
       let filteredArray = books.filter((book) => book._id !== id);
       const response = await axios.delete(
         `https://bookishbazaar-zf22.onrender.com/api/v1/deletebook/${id}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       // Update books state after successful deletion
 

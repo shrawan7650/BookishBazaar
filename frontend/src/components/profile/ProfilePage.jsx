@@ -9,7 +9,9 @@ import toast from "react-hot-toast";
 // import { useCookies } from "react-cookie";
 // import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const ProfilePage = () => {
+  const token = Cookies.get("token");
   const cloud_name = "dmmnkipms";
   const preset_key = "backcb9s";
   const { usersData, setUsersData } = useAuth();
@@ -71,11 +73,15 @@ const ProfilePage = () => {
     console.log(img_url_sec);
     user.img_url = img_url_sec;
     console.log(user);
-
+   
     const response = await axios.put(
       "https://bookishbazaar-zf22.onrender.com/api/v1/profile",
       user,
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     console.log(response);
     // navigate("/");

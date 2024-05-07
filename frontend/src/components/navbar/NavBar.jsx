@@ -24,7 +24,9 @@ import { GiUpgrade } from "react-icons/gi";
 import SearchBar from "./SearchBar";
 import logo from "../../assets/my-pic.jpg";
 import { FcAbout } from "react-icons/fc";
+import Cookies from "js-cookie";
 const NavBar = () => {
+  const token = Cookies.get("token");
   const [show, setShow] = useState(false);
   const [cart] = useCart();
   const [sticky, setSticky] = useState(false);
@@ -49,8 +51,11 @@ const NavBar = () => {
   const logoutHandler = async () => {
     const response = await axios.get(
       "https://bookishbazaar-zf22.onrender.com/api/v1/logout",
+
       {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     toast.success(response.data.msg);

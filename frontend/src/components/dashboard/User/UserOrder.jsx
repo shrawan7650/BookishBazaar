@@ -3,7 +3,9 @@ import { useAuth } from "../../../helper/context/auth";
 import { useCart } from "../../../helper/context/cart";
 import axios from "axios";
 
+import Cookies from "js-cookie";
 const UserOrder = () => {
+  const token = Cookies.get("token");
   const { isLogged } = useAuth();
   const [orders, setOrders] = useState([]); // Initialize orders as an object with an empty products array
 
@@ -12,7 +14,11 @@ const UserOrder = () => {
       try {
         const response = await axios.get(
           "https://bookishbazaar-zf22.onrender.com/api/v1/getorder",
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log(response);
         setOrders(response.data);

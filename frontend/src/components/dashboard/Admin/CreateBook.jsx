@@ -4,7 +4,11 @@ import axios from "axios";
 import { useParams } from "react-router";
 import toast from "react-hot-toast";
 
+import Cookies from "js-cookie";
 const CreateBook = () => {
+  
+
+const token = Cookies.get("token");
   const { id } = useParams();
 
   const [uploadBook, setUploadBook] = useState({
@@ -28,7 +32,11 @@ const CreateBook = () => {
         const response = await axios.put(
           `https://bookishbazaar-zf22.onrender.com/api/v1/updatebook/${id}`,
           { ...uploadBook },
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         toast.success(response.data.msg);
       } catch (err) {
@@ -39,7 +47,11 @@ const CreateBook = () => {
         const response = await axios.post(
           "https://bookishbazaar-zf22.onrender.com/api/v1/createbook",
           { ...uploadBook },
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         toast.success(response.data.message);
         console.log(response.data);

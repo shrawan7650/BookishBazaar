@@ -14,7 +14,10 @@ import axios from "axios";
 import Layout from "../../../layout/Layout";
 import empty from "../../assets/icons8-empty-cart.gif";
 // import Cartpp from "./cartpp";
+import Cookies from "js-cookie";
 const Cartpage = () => {
+
+  const token = Cookies.get("token");
   const [show, setShow] = useState(false);
   const PromoOfferName = "Shrawan";
   const navigate = useNavigate();
@@ -44,7 +47,11 @@ const Cartpage = () => {
     try {
       const res = await axios.delete(
         `https://bookishbazaar-zf22.onrender.com/api/v1/removecart/${id}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(res.data);
       // let myCart = [...cart];
@@ -84,7 +91,11 @@ const Cartpage = () => {
       const response = await axios.post(
         "https://bookishbazaar-zf22.onrender.com/api/v1/checkout",
         { items: checkoutData },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       // console.log(response.data.url);
       setLoader(false);
@@ -137,7 +148,11 @@ const Cartpage = () => {
       const response = await axios.put(
         `https://bookishbazaar-zf22.onrender.com/api/v1/update-cart-quantity/${cart._id}`,
         { quantity: newQuantity, productId },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(response);
       window.location.reload();

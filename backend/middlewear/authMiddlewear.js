@@ -3,13 +3,14 @@ const User = require("../model/userSchema");
 require("dotenv").config();
 exports.varifyiToken = (req, res, next) => {
   try {
-    const token = req.cookies.token;
-    console.log("token 2", token);
+    const Bearertoken = req.headers.authorization;
+    console.log("token 2", Bearertoken);
 
-    if (!token) {
+    if (!Bearertoken) {
       return res.send({ msg: "token is missing" });
     }
     //  console.log("token",token)
+    let token = Bearertoken.split(" ")[1];
     const decode = jwt.verify(token, process.env.SECRET_KEY);
     req.userId = decode.id;
     // console.log(req.userId, "this is user id");
@@ -24,7 +25,7 @@ exports.varifyiToken = (req, res, next) => {
 exports.isAdmin = async (req, res, next) => {
   try {
     const user = await User.findById(req.userId);
-   
+
     if (!user) {
       return res.status(401).json({ message: "unauthorized access" });
     }

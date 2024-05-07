@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState, useContext, createContext, useEffect } from "react";
-
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -11,12 +11,16 @@ export const CartProvider = ({ children }) => {
   //   let existingCartItem = localStorage.getItem("cart");
   //   if (existingCartItem) setCart(JSON.parse(existingCartItem));
   // }, []);
-
+  const token = Cookies.get("token");
   useEffect(() => {
     const getCartItem = async () => {
       const response = await axios.get(
         "https://bookishbazaar-zf22.onrender.com/api/v1/getcart",
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       // console.log(response)
       setCart(response.data.cart.products);

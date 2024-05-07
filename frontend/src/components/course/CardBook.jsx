@@ -6,7 +6,10 @@ import { useNavigate } from "react-router";
 import Spinner2 from "../../spinner/Spinner2";
 import axios from "axios";
 
+import Cookies from "js-cookie";
 const CardBook = ({ item, loader }) => {
+
+  const token = Cookies.get("token");
   const navigate = useNavigate();
   // console.log("this is item", item);
 
@@ -42,7 +45,12 @@ const CardBook = ({ item, loader }) => {
         {
           product_id: id,
         },
-        { withCredentials: true }
+       
+ {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+}
       );
       console.log(response);
     } catch (err) {
