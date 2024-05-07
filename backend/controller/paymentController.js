@@ -32,8 +32,8 @@ exports.checkOutHandler = async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["IN", "US"],
       },
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: `${process.env.PAYMENT_SUCCESS}/success`,
+      cancel_url: `${process.env.PAYMENT_CANCLE}/cancle`,
     });
 
     console.log(id, req.body.items);

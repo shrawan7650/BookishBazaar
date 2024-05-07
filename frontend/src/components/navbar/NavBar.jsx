@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
+import { FaOrcid, FaRoad, FaShoppingCart, FaUserAlt } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../helper/context/auth";
@@ -178,9 +178,18 @@ const NavBar = () => {
                     )}
                   </div>
                   <div className="mb-10">
+                  <NavLink
+                      onClick={() => setTogle(!togle)}
+                      to= {`/dashboard/${usersData?.role}/order`}
+                      className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
+                    >
+                      <FaRoad className="mr-2" />
+                      Order
+                    </NavLink>
+
                     <NavLink
                       onClick={() => setTogle(!togle)}
-                      to="/dashboard/admin/profile"
+                      to={`/dashboard/${usersData?.role}/profile`}
                       className="flex items-center px-6 py-2.5 text-gray-500 hover:text-orange-600 group"
                     >
                       <FaUser className="mr-2" />
