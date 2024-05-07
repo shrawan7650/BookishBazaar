@@ -24,7 +24,7 @@ const Contact = () => {
       toast.error("Required All Filed");
     } else {
       await axios.post(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/contact",
+        `${import.meta.env.VITE_DEV_BASE_URL}contact`,
         contact
       );
       toast.success("Resolve Quickly");

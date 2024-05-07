@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const getCartItem = async () => {
       const response = await axios.get(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/getcart",
+        `${import.meta.env.VITE_DEV_BASE_URL}getcart`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

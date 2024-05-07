@@ -23,7 +23,7 @@ const token = Cookies.get("token");
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/all-orders",
+        `${import.meta.env.VITE_DEV_BASE_URL}all-orders`,
        
  {
   headers: {

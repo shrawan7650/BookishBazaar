@@ -26,7 +26,7 @@ const token = Cookies.get("token");
     try {
       let filteredArray = books.filter((book) => book._id !== id);
       const response = await axios.delete(
-        `https://bookishbazaar-zf22.onrender.com/api/v1/deletebook/${id}`,
+        `${import.meta.env.VITE_DEV_BASE_URL}deletebook/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

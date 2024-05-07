@@ -13,7 +13,7 @@ const UserOrder = () => {
     const getOrderItem = async () => {
       try {
         const response = await axios.get(
-          "https://bookishbazaar-zf22.onrender.com/api/v1/getorder",
+          `${import.meta.env.VITE_DEV_BASE_URL}getorder`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

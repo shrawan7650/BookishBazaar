@@ -46,7 +46,7 @@ const Cartpage = () => {
   const removeCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `https://bookishbazaar-zf22.onrender.com/api/v1/removecart/${id}`,
+        `${import.meta.env.VITE_DEV_BASE_URL}removecart/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ const Cartpage = () => {
       console.log(checkoutData);
       // Make a POST request to your backend with the checkout data
       const response = await axios.post(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/checkout",
+        `${import.meta.env.VITE_DEV_BASE_URL}checkout`,
         { items: checkoutData },
         {
           headers: {

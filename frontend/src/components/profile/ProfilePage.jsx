@@ -75,7 +75,7 @@ const ProfilePage = () => {
     console.log(user);
    
     const response = await axios.put(
-      "https://bookishbazaar-zf22.onrender.com/api/v1/profile",
+      `${import.meta.env.VITE_DEV_BASE_URL}profile`,
       user,
       {
         headers: {

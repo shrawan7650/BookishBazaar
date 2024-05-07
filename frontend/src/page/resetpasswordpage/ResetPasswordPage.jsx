@@ -15,7 +15,7 @@ const ResetPasswordPage = () => {
 
     try {
       const response = await axios.post(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/change-password",
+        `${import.meta.env.VITE_DEV_BASE_URL}change-password`,
         { email, otp, password: newPassword }
       );
       toast.success(response.data.msg);

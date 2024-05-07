@@ -14,7 +14,7 @@ const ForgetPage = () => {
     e.preventDefault();
 
     const response = await axios.post(
-      "https://bookishbazaar-zf22.onrender.com/api/v1/email-send",
+      `${import.meta.env.VITE_DEV_BASE_URL}email-send`,
       { email }
     );
     const responseEmail = response.data.data.email;

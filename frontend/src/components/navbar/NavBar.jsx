@@ -50,7 +50,7 @@ const NavBar = () => {
 
   const logoutHandler = async () => {
     const response = await axios.get(
-      "https://bookishbazaar-zf22.onrender.com/api/v1/logout",
+      `${import.meta.env.VITE_DEV_BASE_URL}logout`,
 
       {
         headers: {

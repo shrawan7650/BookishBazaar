@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       setLoader(true);
       try {
         const response = await axios.get(
-          "https://bookishbazaar-zf22.onrender.com/api/v1/books"
+          `${import.meta.env.VITE_DEV_BASE_URL}books`
         );
         console.log(response.data);
         setBooks(response?.data?.books);

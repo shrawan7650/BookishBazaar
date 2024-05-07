@@ -67,7 +67,7 @@
 //     const checkoutData = prepareCheckoutData();
 // // console.log(checkoutData)
 //     // Make a POST request to your backend with the checkout data
-//     const response = await axios.post("https://bookishbazaar-zf22.onrender.com/api/v1/checkout", { items: checkoutData });
+//     const response = await axios.post(`${import.meta.env.VITE_DEV_BASE_URL}`checkout", { items: checkoutData });
 //   console.log(response)
 //     // Redirect to the checkout URL received from the backend
 //     window.location = response.url;

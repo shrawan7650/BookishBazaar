@@ -8,7 +8,6 @@ import axios from "axios";
 
 import Cookies from "js-cookie";
 const CardBook = ({ item, loader }) => {
-
   const token = Cookies.get("token");
   const navigate = useNavigate();
   // console.log("this is item", item);
@@ -41,17 +40,19 @@ const CardBook = ({ item, loader }) => {
       const id = item._id;
       console.log(id);
       const response = await axios.post(
-        "https://bookishbazaar-zf22.onrender.com/api/v1/cart",
+        `${import.meta.env.VITE_DEV_BASE_URL}cart`,
         {
           product_id: id,
         },
-       
- {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-}
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+      toast.success("Add succssfully")
+      window.location.reload();
       console.log(response);
     } catch (err) {
       console.log(err);
