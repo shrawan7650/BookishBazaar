@@ -61,7 +61,7 @@ const ReviewCard = () => {
   return (
     <div className=" max-h-fit   mb-6 px-2 mt-2">
       <h1 className="text-center text-3xl text-black  from-neutral-600">
-        Our Coustomer
+        Our Customer
       </h1>
       <Swiper
         pagination={{ clickable: true }}

@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../../helper/context/auth"
-import { FaTwitter, FaYoutube, FaFacebookF,FaInstagramSquare, FaInstagram, FaGithub, FaDribbble, FaBookReader } from "react-icons/fa";
+import { FaTwitter, FaYoutube, FaFacebookF,FaInstagramSquare, FaInstagram, FaGithub, FaDribbble, FaBookReader, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   const {isLogged} = useAuth();
@@ -18,34 +19,35 @@ const Footer = () => {
         </p>
         <ul className="flex justify-center gap-6 mt-8 md:gap-8 sm:justify-start">
           <li>
-            <a href="/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
+           
+            <Link href="https://www.youtube.com/channel/UCN_rmPACp80Pi7Dozz3sChg" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
               <span className="sr-only">Facebook</span>
               <FaYoutube className="text-2xl" />
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
+            <Link to="https://www.instagram.com/shrawan2401/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
               <span className="sr-only">Instagram</span>
             <FaInstagram className="text-2xl"/>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
+            <Link to="https://x.com/shrawan2401" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
               <span className="sr-only">Twitter</span>
              <FaTwitter className=" text-2xl"/>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
+            <Link to="https://github.com/shrawan7650" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
               <span className="sr-only">GitHub</span>
               <FaGithub className=" text-2xl"/>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" rel="noopener noreferrer" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
+            <Link to="https://www.linkedin.com/feed/" target="_blank" className="text-teal-500 transition hover:text-teal-500/75">
               <span className="sr-only">Dribbble</span>
-           <FaDribbble className="text-2xl"/>
-            </a>
+           <FaLinkedinIn className="text-2xl"/>
+            </Link>
           </li>
         </ul>
       </div>

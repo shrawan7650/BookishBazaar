@@ -63,7 +63,7 @@ exports.signupcontroller = async (req, res) => {
 exports.logincontroller = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password ) {
+    if (!email || !password) {
       return res.status(400).json({ msg: "Please enter all the fields" });
     }
 
@@ -83,7 +83,12 @@ exports.logincontroller = async (req, res) => {
     user.password = undefined;
     user.confirmpassword = undefined;
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
+    // res.Cookies.set("token", token, {
+    //   httpOnly: true,
+    //   maxAge: 1000 * 60 * 60 * 24 * 7,
+    // });
 
+    // Send token in the response body along with user details
     // Send token in the response body along with user details
     res
       .status(200)

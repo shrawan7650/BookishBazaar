@@ -338,7 +338,8 @@ const NavBar = () => {
               </span>
             </NavLink>
           </span>
-          <div className=" h-12 w-12   group  relative rounded-full  cursor-pointer border border-gray-400">
+        <Link to="/dashboard/user/profile">
+        <div className=" h-12 w-12   group  relative rounded-full  cursor-pointer border border-gray-400">
             <img
               className=" h-12 w-12 object-fill image-full rounded-full "
               src={usersData?.image}
@@ -349,6 +350,7 @@ const NavBar = () => {
               <p>{usersData?.email}</p>
             </div>
           </div>
+        </Link>
         </div>
       </div>
     </>

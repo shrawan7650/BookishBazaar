@@ -31,7 +31,7 @@ const Cartpage = () => {
   const totalPrice = () => {
     let sum = 0;
     cart?.map((item) => {
-      sum += item.book.price * item.quantity;
+      sum += item.book?.price * item?.quantity;
     });
 
     const totaPrice = "₹" + sum.toFixed(2);
@@ -53,7 +53,7 @@ const Cartpage = () => {
           },
         }
       );
-      console.log(res.data);
+  window.location.reload();
       // let myCart = [...cart];
       // let index = myCart.findIndex((item) => item._id === id);
 
@@ -212,13 +212,11 @@ const Cartpage = () => {
               ) : (
                 <div className=" grid grid-cols-2 md:grid-cols-1  px-1 py-1 md:w-[106%]  gap-2  md:-mx-8  md:py-5">
                   {cart?.map((items) => {
-                    {
-                      console.log(items.book);
-                    }
+                   
                     return (
                       <>
                         <div
-                          key={items?.book._id}
+                          key={items?.book?._id}
                           className="flex flex-col md:flex-row items-center   h-fit w-[100%] md:w-full px-2 py-2  shadow-lg justify-between border border-gray-200 hover:bg-gray-100
         md:py-5 "
                         >
@@ -228,16 +226,16 @@ const Cartpage = () => {
                             <div className="md:min-w-20 min-w-28 ">
                               <img
                                 className="md:h-24 h-32 md:w-32 aspect-auto fill-transparent w-full rounded-md"
-                                src={items.book.image}
+                                src={items?.book?.image}
                                 alt
                               />
                             </div>
                             <div className="flex flex-col justify-between gap-y-1  mb-3 ml-4 flex-grow">
                               <span className="font-bold text-sm">
-                                Name:{items.book.author}
+                                Name:{items?.book?.author}
                               </span>
                               <span className="text-red-500 text-xs">
-                                Title:{items.book.title}
+                                Title:{items?.book?.title}
                               </span>
                             </div>
                           </div>
@@ -257,7 +255,7 @@ const Cartpage = () => {
                               className="mx-2 border text-center outline-none bg-slate-300 text-black font-light w-8"
                               type=" number"
                               defaultValue={0}
-                              value={items.quantity}
+                              value={items?.quantity}
                               readOnly
                             />
                             <IoAddOutline
@@ -265,7 +263,7 @@ const Cartpage = () => {
                                 quantityChangeHandler(
                                   items?.book._id,
                                   "increment",
-                                  items.quantity
+                                  items?.quantity
                                 )
                               }
                               className="cursor-pointer  text-2xl"
@@ -278,11 +276,11 @@ const Cartpage = () => {
                             />
                             <p className="text-center  font-semibold text-sm">
                               <span className="md:hidden">Price:</span>₹
-                              {items.book.price}
+                              {items?.book?.price}
                             </p>
                             <p className="text-center md:block font-semibold text-sm ">
                               <span className="md:hidden">Total:</span>₹
-                              {items.book.price * items.quantity}
+                              {items?.book?.price * items.quantity}
                             </p>
                           </div>
                         </div>

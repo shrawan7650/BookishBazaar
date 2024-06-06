@@ -120,7 +120,7 @@ const ProfilePage = () => {
   // }
   return (
     <div className="  border border-red-800 w-full   relative h-screen flex flex-col justify-center items-center  bg-slate-800">
-      <h1 className="text-3xl  mb-4 border border-gray-500 px-8 rounded-lg">
+      <h1 className="text-3xl  mb-4 border text-white border-gray-500 px-8 rounded-lg">
         Profile Page
       </h1>
       <div className="flip-card rounded-xl flex justify-center items-center  w-full md:max-w-96 ">
@@ -142,7 +142,7 @@ const ProfilePage = () => {
       </div>
       <div className="flex  md:mt-4 md:max-w-[30%]  flex-wrap w-full mb-6  justify-evenly relative  items-center">
         <button
-          className="border border-gray-700 px-4 py-1  rounded-2xl uppercase "
+          className="border text-white border-gray-700 px-4 py-1  rounded-2xl uppercase "
           onClick={toggleModal}
         >
           Update Profile

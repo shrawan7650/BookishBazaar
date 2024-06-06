@@ -13,7 +13,7 @@ const EffectCard = () => {
           effect={"cards"}
           grabCursor={true}
           modules={[EffectCards]}
-          className="  h-96 font-bold  transition-transform  progress-success rounded-2xl md:w-[350px] max-w-fit overflow-x-hidden overflow-y-hidden  mt-20"
+          className="  h-96 font-bold  transition-transform  progress-success rounded-2xl md:w-[350px] max-w-fit md:overflow-visible overflow-x-hidden overflow-y-hidden  mt-20"
         >
           <SwiperSlide className=" flex items-center  justify-center  rounded-2xl text-2xl font-bold text-white bg-slate-950">
       <img src="https://images.pexels.com/photos/1005012/pexels-photo-1005012.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></img>
@@ -43,6 +43,7 @@ const EffectCard = () => {
           <img src="https://m.media-amazon.com/images/I/81Ls+SBCLiL._AC_UF1000,1000_QL80_DpWeblab_.jpg"></img>
           </SwiperSlide>
         </Swiper>
+   
       </>
     </div>
   );

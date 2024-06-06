@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../../spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAuth } from "../../helper/context/auth";
-import lo from "../../assets/671822c2f63dd5f65d8fd15c9710420b.jpg";
+import lo from "../../assets/cup-with-stationery-library.jpg";
 const Signup = () => {
   const { isLogged } = useAuth();
   const { loginWithRedirect, users } = useAuth0();
@@ -75,11 +75,11 @@ const Signup = () => {
         }}
         className={` h-screen `}
       >
-        <div className="bg-gray-100 flex border backdrop-blur-mda   bg-transparent text-white border-gray-600    mx-auto relative  overflow-hidden overflow-y-hidden flex-row-reverse rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div className="bg-gray-100 flex  border gap-5 backdrop-blur-lg   bg-transparent text-white border-gray-600    mx-auto relative  overflow-hidden overflow-y-hidden flex-row-reverse rounded-2xl shadow-lg max-w-3xl  items-center">
           {/* form */}
-          <div className="md:w-1/2 px-8 md:px-16 mt-7">
+          <div className="md:w-1/2 backdrop-blur-md border border-gray-300  rounded-md px-8 md:px-16 mt-7">
             <h2 className="font-bold text-2xl text-[#002D74]">Signup</h2>
-            <p className="text-xs mt-4 text-[#002D74]">
+            <p className="text-xs mt-4 mb-2 text-[#002D74]">
               If you are already a member, easily log in
             </p>
             <form
@@ -105,7 +105,7 @@ const Signup = () => {
               </option>
             </select> */}
               <input
-                className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
+                className="p-2 rounded-xl outline-none w-full bg-transparent border"
                 type="text"
                 name="name"
                 onChange={inputChangeHandler}
@@ -113,7 +113,7 @@ const Signup = () => {
                 placeholder="Enter Name"
               />
               <input
-                className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
+                className="p-2 rounded-xl outline-none w-full bg-transparent border"
                 type="email"
                 name="email"
                 onChange={inputChangeHandler}
@@ -121,7 +121,7 @@ const Signup = () => {
                 placeholder="Email"
               />
               <input
-                className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
+                className="p-2 rounded-xl outline-none w-full bg-transparent border"
                 type="text"
                 name="phone"
                 onChange={inputChangeHandler}
@@ -130,7 +130,7 @@ const Signup = () => {
               />
               <div className=" outline-none relative">
                 <input
-                  className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
+                  className="p-2 rounded-xl outline-none w-full  bg-transparent border"
                   type={isPasswordVisible ? "text" : "password"}
                   name="password"
                   placeholder="Password"
@@ -152,7 +152,7 @@ const Signup = () => {
 
               <div className=" relative outline-none">
                 <input  
-                  className="p-2 rounded-xl outline-none w-full text-black bg-transparent border"
+                  className="p-2 rounded-xl outline-none w-full bg-transparent border"
                   type={isPasswordVisible ? "text" : "password"}
                   name="confirmpassword"
                   placeholder="Confirm Password"
@@ -180,8 +180,8 @@ const Signup = () => {
             </form>
             <Link to="/login">
               {" "}
-              <p className=" hover:underline  text-center text-wrap  hover:text-black ">
-                already have an account login here!
+              <p className=" hover:underline  text-center text-wrap  font-semibold  text-black ">
+                already have an account <span className=" text-red-700 ">login here!</span>
               </p>
             </Link>
             <div className=" grid grid-cols-3 items-center text-gray-400">
@@ -191,7 +191,7 @@ const Signup = () => {
             </div>
             <button
               onClick={() => loginWithRedirect()}
-              className="bg-white  py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
+              className="bg-white mb-3 py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
             >
               <FcGoogle className="text-[1.3rem] mr-1 text-center cursor-pointer" />
               Signup with Google

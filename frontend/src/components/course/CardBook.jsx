@@ -62,17 +62,17 @@ const CardBook = ({ item, loader }) => {
   return loader ? (
     <Spinner2 />
   ) : (
-    <div className=" relative  md:min-w-[20rem]  min-w-[80%]  m-5  md:ml-12  h-fit  mt-24   cursor-pointer">
-      <div className=" w-full flex  h-fit mt-14 ">
+    <div className=" relative border  aspect-square  md:min-w-[20rem]  min-w-[80%]  m-5  md:ml-12  h-fit  mt-24   cursor-pointer">
+      <div className=" w-full   flex  h-fit mt-14 ">
         {
           <img
-            className="w-44  hover:-translate-y-4 -top-16  duration-700 transition-all  left-16 .hvr-glow h-44 absolute z-20 md:left-[72px] rounded-md"
+            className="w-44   aspect-square   hover:-translate-y-4 -top-16  duration-700 transition-all  left-10 .hvr-glow h-44 absolute z-20 md:left-[72px] rounded-md"
             src={item.image}
             alt="loading..."
           />
         }
 
-        <div className="flex  z-10 h-fit  top-24  border hover:bg-blue-600 hover:text-white shadow-2xl  text-black rounded-2xl outline-none flex-col  w-full ">
+        <div className="flex  aspect-square   z-10 h-fit  top-24  border hover:bg-blue-600 hover:text-white shadow-2xl  text-black rounded-2xl outline-none flex-col  w-full ">
           <div className=" mt-16 h-fit   text-center px-3 flex flex-col gap-1">
             <div className=" flex mt-2 mx-auto">
               <CiStar className=" bg-orange-300" />
@@ -91,7 +91,7 @@ const CardBook = ({ item, loader }) => {
               {item.author}
             </p>
 
-            <div className=" mx-auto flex   w-full gap-2 mb-5 justify-between  ">
+            <div className=" mx-auto flex mt-20   w-full gap-2 mb-5 justify-between  ">
               <button
                 onClick={() => {
                   AddCartBackend(item);

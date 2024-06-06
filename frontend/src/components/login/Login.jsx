@@ -81,12 +81,12 @@ const Login = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className=" h-screen  "
+      className=" h-screen overflow-hidden  "
     >
       <div className=" shadow-2xl flex mx-auto backdrop-blur-md min-h-[80vh] border text-white border-gray-600  relative top-20    rounded-2xl  max-w-3xl p-5 items-center">
         <div className="md:w-1/2 px-14 md:px-16">
           <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
-          <p className="text-xs mt-4 text-black">
+          <p className="text-xs mt-4 text-gray-500">
             If you are already a member, easily log in
           </p>
           <form onSubmit={submitLoginForm} className="flex flex-col  gap-4">
@@ -142,12 +142,12 @@ const Login = () => {
             </button>
             <div className=" text-white">
               <Link to="/forget">
-                <span className=" hover:underline text-base cursor-pointer md:ml-2">
+                <span className=" hover:underline text-base text-red-500 cursor-pointer md:ml-2">
                   Forgot password?
                 </span>
               </Link>
               <Link to="/signup">
-                <span className=" hover:underline text-base hover:text-black cursor-pointer md:ml-2">
+                <span className=" hover:underline text-base text-black font-semibold cursor-pointer md:ml-2">
                   Signup Now
                 </span>
               </Link>
