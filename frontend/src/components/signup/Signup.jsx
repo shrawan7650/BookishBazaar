@@ -73,11 +73,13 @@ const Signup = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className={` h-screen `}
+        className={` h-screen  `}
       >
-        <div className="bg-gray-100 flex  border gap-5 backdrop-blur-lg   bg-transparent text-white border-gray-600    mx-auto relative  overflow-hidden overflow-y-hidden flex-row-reverse rounded-2xl shadow-lg max-w-3xl  items-center">
+       <div className="relative ">
+       <div className="bg-gray-100 flex  gap-5 backdrop-blur-lg   bg-transparent text-white    mx-auto  md:absolute left-80 top-20  overflow-hidden overflow-y-hidden flex-row-reverse rounded-2xl shadow-lg max-w-3xl  items-center">
           {/* form */}
-          <div className="md:w-1/2 backdrop-blur-md border border-gray-300  rounded-md px-8 md:px-16 mt-7">
+       <div className="border max-w-full md:w-1/2">
+       <div className="w-full backdrop-blur-md  rounded-md px-8 md:px-16 mt-7 mr-10">
             <h2 className="font-bold text-2xl text-[#002D74]">Signup</h2>
             <p className="text-xs mt-4 mb-2 text-[#002D74]">
               If you are already a member, easily log in
@@ -197,15 +199,17 @@ const Signup = () => {
               Signup with Google
             </button>
           </div>
+       </div>
           {/* image */}
           {laoding ? (
             <Spinner />
           ) : (
-            <div className="md:block hidden md:w-[40%]">
+            <div className="md:block hidden ml-2 md:w-[50%]">
               <img className="rounded-2xl" src={loginlogo} />
             </div>
           )}
         </div>
+       </div>
       </div>
     </>
   );

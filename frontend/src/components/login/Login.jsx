@@ -103,7 +103,7 @@ const Login = () => {
               <option value="user">user</option>
             </select> */}
             <input
-              className="p-2  rounded-xl outline-none"
+              className="p-2 rounded-xl outline-none w-full bg-transparent border"
               type="email"
               name="email"
               placeholder="Email"
@@ -112,7 +112,7 @@ const Login = () => {
             />
             <div className=" relative outline-none">
               <input
-                className="p-2 rounded-xl border outline-none w-full"
+                className="p-2 rounded-xl outline-none w-full bg-transparent border"
                 type={isPasswordVisible ? "text" : "password"}
                 name="password"
                 placeholder="Password"
